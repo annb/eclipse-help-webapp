@@ -22,115 +22,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title><%=ServletResources.getString("SearchLabel", request)%></title>
-     
-<style type="text/css">
-/* need this one for Mozilla */
-HTML { 
-	width:100%;
-	height:100%;
-	margin:0px;
-	padding:0px;
-	border:0px;
- }
 
-BODY {
-	background:<%=prefs.getToolbarBackground()%>;
-	border:0px;
-	height:100%;
-}
-
-TABLE {
-	font: <%=prefs.getToolbarFont()%>;
-	background:<%=prefs.getToolbarBackground()%>;
-	margin: 0px;
-	padding: 0px;
-	height:100%;
-}
-
-FORM {
-	background:<%=prefs.getToolbarBackground()%>;
-	height:100%;
-	margin:0px;
-}
-
-INPUT {
-	font: <%=prefs.getToolbarFont()%>;
-	margin:0px;
-	padding:0px;
-}
-
-INPUT {
-    font-size: 1.0em;
-}
-
-A {
-	color:WindowText;
-	text-decoration:none;
-}
-
-#searchTD {
-	padding-<%=isRTL?"right":"left"%>:7px;
-	padding-<%=isRTL?"left":"right"%>:4px;
-}
-
-.uiSearchInput input[type="text"] {
-    background: url("images/SearchIcon.png") no-repeat scroll right -1px #FFFFFF;
-    margin: 0px 20px;
-    padding-right: 24px;
-}
-
-.uiSearchInput input[type="text"]:hover, input[type="text"]:focus {
-    background: url("images/SearchIcon.png") no-repeat scroll right -28px #FFFFFF;
-}
-
-#searchLabel {
-	color:WindowText;
-}
-
-#go {
-<% 
-    if (data.isMacMozilla()) {
-%>
-    background:GrayText;
-<% 
-    } else {
-%>
-    background:ThreeDShadow;
-<%
-    }
-%>
-	color:Window;
-	font-weight:bold;
-	border:1px solid ThreeDShadow;
-	margin-left:1px;
-	font-size: 1.0em;
-}
-
-#scopeLabel {
-	text-decoration:underline; 
-	color:#0066FF; 
-	cursor:pointer;
-	padding-left:15px;   /* This should be the same for both RTL and LTR. */
-}
-
-#scope { 
-	text-align:<%=isRTL?"left":"right"%>;
-	margin-<%=isRTL?"right":"left"%>:5px;
-	border:0px;
-	color:WindowText;
-	text-decoration:none;
-}
-
-<%
-	if (data.isIE()) {
-%>
-#go {
-	padding-<%=isRTL?"right":"left"%>:1px;
-}
-<%
-	}
-%>
-</style>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
 
 <script language="JavaScript">
 var isIE = navigator.userAgent.indexOf('MSIE') != -1;
@@ -292,34 +186,56 @@ function onloadHandler(e)
 
 <body dir="<%=direction%>" onload="onloadHandler()"  onunload="closeAdvanced()">
 
-	<form  name="searchForm"   onsubmit="doSearch()">
-		<table id="searchTable" align="<%=isRTL?"right":"left"%>" valign="middle" cellspacing="0" cellpadding="0" border="0">
-			<tr nowrap  valign="middle">
-				<!--td <%=isRTL?"nowrap":""%> id="searchTD">
-					<label id="searchLabel" for="searchWord" accesskey="<%=ServletResources.getAccessKey("SearchLabel", request)%>">
-					&nbsp;<%=ServletResources.getLabel("SearchLabel", request)%>
-					</label>
-				</td-->
-				<td>
-					<div class="uiSearchInput"><input type="text" id="searchWord" name="searchWord" value='' size="24" maxlength="256" 
+<div  class="uiGrayLightBox searchBar clearfix">
+	<div class="pull-right actionBar">
+		<a class="btn btn-primary"><i class="uiIconDownload uiIconWhite"></i> PDF</a>
+		<div class="pull-right setting dropdown">
+			 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<i class="uiIconSetting"></i> 
+				<span class="caret"></span>
+			 </a>
+			<ul class="dropdown-menu">
+				 <li><a href="#" tabindex="-1">Action</a></li>
+                  <li><a href="#" tabindex="-1">Another action</a></li>
+                  <li><a href="#" tabindex="-1">Something else here</a></li>
+                  <li class="divider"></li>
+				   <li><a href="#" tabindex="-1">Another action</a></li>
+                  <li><a href="#" tabindex="-1">Something else here</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="uiSearchForm uiSearchInput pull-left">
+		<form  name="searchForm"   onsubmit="doSearch();">
+			<div>
+				<input type="text" id="searchWord" name="searchWord" alt="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>" 
+					       title="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>">
+			</div>
+		</form>
+	</div>
+	
+	<ul class="breadcrumb">       
+	   <li class="">       
+             <a href="/portal/intranet/wiki/WikiHome">Wiki Home</a>    
+		</li>		
+         <li class="active"><span class="uiIconMiniArrowRight">&nbsp;</span>Edit Page</li>  
+	</ul>	
+</div>
+	<!--form  name="searchForm"   onsubmit="doSearch()">
+		<div class="box-gray">	
+			<div class="pull-right action-button">
+				<a class="btn btn-primary"></a>
+			</div>
+			<input type="hidden" name="maxHits" value="500" >
+			<div class="uiSearchInput may">
+				<input type="text" id="searchWord" name="searchWord" value='' size="24" maxlength="256" 
 					       alt="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>" 
-					       title="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>"></div>
-				</td>
-				<td >
-					<!--input type="button" onclick="this.blur();doSearch()" value="<%=ServletResources.getString("GO", request)%>" id="go" alt="<%=ServletResources.getString("GO", request)%>" title="<%=ServletResources.getString("GO", request)%>"-->
-					<input type="hidden" name="maxHits" value="500" >
-				</td>
-				<!--td nowrap>
-					<a id="scopeLabel" href="javascript:openAdvanced();" title="<%=ServletResources.getString("ScopeTooltip", request)%>" alt="<%=ServletResources.getString("ScopeTooltip", request)%>" onmouseover="window.status='<%=UrlUtil.JavaScriptEncode(ServletResources.getString("ScopeTooltip", request))%>'; return true;" onmouseout="window.status='';"><%=ServletResources.getLabel("Scope", request)%></a>
-				</td>
-				<td nowrap>
-					<input type="hidden" name="workingSet" value='<%=UrlUtil.htmlEncode(data.getScope())%>'>
-					<div id="scope" ><%=UrlUtil.htmlEncode(data.getScope())%></div>
-				</td-->
-			</tr>
+					       title="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>">
+			</div>
+			<div class=""></div>
 
-		</table>
-	</form>		
+		</div>
+	</form-->		
 
 </body>
 </html>

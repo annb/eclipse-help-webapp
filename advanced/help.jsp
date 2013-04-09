@@ -82,16 +82,16 @@ if(isRTL) {
 <%
 if(isRTL) {
 %>
-		if (title != "") // this is the right side for right-to-left rendering
-			frameset.setAttribute("cols", "*,100%");
-		else // this is the content toolbar
+		//if (title != "") // this is the right side for right-to-left rendering
+		//	frameset.setAttribute("cols", "*,100%");
+		//else // this is the content toolbar
 			frameset.setAttribute("cols", "100%,*");
 <%
 } else {
 %>
-		if (title != "") // this is the left side for left-to-right rendering
-			frameset.setAttribute("cols", "100%,*");
-		else // this is the content toolbar
+		//if (title != "") // this is the left side for left-to-right rendering
+		//	frameset.setAttribute("cols", "100%,*");
+		//else // this is the content toolbar
 			frameset.setAttribute("cols", "*,100%");
 <%
 }
@@ -115,16 +115,18 @@ if (data.isIE()) {
 <%
 }
 %> 
-    id="helpFrameset" cols="<%=isRTL?"75%,25%":"25%,75%"%>" framespacing="3" border="0.5"  frameborder="1"   scrolling="no">
+    id="helpFrameset" cols="<%=isRTL?"75%,2%,23%":"23%,2%,75%"%>" framespacing="0" border="0"  frameborder="1"   scrolling="no" bordercolor="#FFFFFF">
 <%
 if (isRTL) {
 %>
    	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=yes>
+	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
    	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
 <%
 } else {
 %>
    	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
+	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
    	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=yes>
 <%
 }

@@ -71,7 +71,7 @@ if (data.isMozilla()){
 </script>
 </head>
 
-<frameset id="indexFrameset" onload="onloadHandler()" rows="<%="0".equals(data.getBannerHeight())?"":data.getBannerHeight()+","%>24,*<%=data.getFooterRowText()%>"  frameborder="0" framespacing="0" border=0 spacing=0>
+<frameset id="indexFrameset" onload="onloadHandler()" rows="60,55,*,24"  frameborder="0" framespacing="0" border=0 spacing=0>
 <%
 	if(!("0".equals(data.getBannerHeight()))){
 %>
@@ -81,13 +81,7 @@ if (data.isMozilla()){
 %>
 	<frame name="HelpToolbarFrame" title="<%=ServletResources.getString("ignore", "HelpToolbarFrame", request)%>" src='<%="advanced/helpToolbar.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" noresize=0>
 	<frame name="HelpFrame" title="<%=ServletResources.getString("ignore", "HelpFrame", request)%>" src='<%="advanced/help.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" >
-<%
-	if(!("0".equals(data.getFooterHeight()))){
-%>
-	<frame name="FooterFrame" title="<%=ServletResources.getString("Footer", request)%>" src='<%=data.getFooterURL()%>'  marginwidth="0" marginheight="0" scrolling="no" frameborder="0" noresize=0>
-<%
-	}
-%>
+	<frame name="FooterFrame" title="<%=ServletResources.getString("Footer", request)%>" src='advanced/footer.jsp'  marginwidth="0" marginheight="0" scrolling="no" frameborder="0" noresize=0>
 </frameset>
 
 </html>

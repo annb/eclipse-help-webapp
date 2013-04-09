@@ -21,9 +21,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title><%=ServletResources.getString("Content", request)%></title>
-
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
 <style type="text/css">
-<%@ include file="tocTree.css"%>
 </style>  
     
 <base target="ContentViewFrame">
@@ -152,13 +152,32 @@ if (requestData.isIE()){
     }
 %>
 
-  <DIV class = "group" id = "wai_application">
-     <SELECT id="select_doc" onchange="selectDoc();">
-         <OPTION value="doc40" selected="selected">eXo Platform 4.0 Documentation</OPTION>
-         <OPTION value="doc35">eXo Platform 3.5 Documentation</OPTION>	 
-     </SELECT>
-     <DIV class = "root" id = "tree_root">
-    </DIV>
-  </DIV>
+<div style="width: 100%">
+		<div class="leftBar">
+			<!--a id="maximize_restore" class="iconControll resize" href="javascript:void(0)"><i class="uiIconMiniArrowLeft pull-left" ></i></a-->
+			<div>
+				<div id = "wai_application">
+					<div class="btn-group uiDropdownWithIcon">
+							<div id="select_doc" data-toggle="dropdown" class="btn dropdown-toggle" onclick="openDropBox();">		
+								<span id="currentItem">eXo Platform 4.0</span>		
+								<i class="spiter"></i>
+								<i class="caret"></i>
+							</div>
+							<ul id="listOfDocs" role="menu" class="dropdown-menu">					
+								<li>							
+									<a href="#" class="OptionItem" onclick="selectDoc(this);">eXo Platform 4.0</a>
+								</li>
+								<li>							
+									<a href="#" class="OptionItem" onclick="selectDoc(this);">eXo Platform 3.5</a>
+								</li>
+							</ul>
+					</div>
+					<!--begin tree-->					
+					<div id="tree_root" class="root" aria-expanded="true">
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
 </body>
 </html>

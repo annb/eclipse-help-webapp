@@ -33,14 +33,14 @@ function onloadHandler(e)
 function resize()
 {
 <% if (data.isIE() || data.isMozilla() && "1.2.1".compareTo(data.getMozillaVersion()) <=0){
-%>	var titleText=window.<%=view.getName()%>ToolbarFrame.document.getElementById("titleText");
-	if (!titleText) return;
-	var h=titleText.offsetHeight; <%-- default 13 --%>
-	if(h<=19){
-		return; <%-- no need to resize up to 19px --%>
-	}
-	document.getElementById("viewFrameset").setAttribute("rows", (11+h)+",*"); <%-- default 24 --%>
-	window.<%=view.getName()%>ToolbarFrame.document.getElementById("titleTextTableDiv").style.height=(9+h)+"px"; <%-- default 22 --%>
+%>	//var titleText=window.<%=view.getName()%>ToolbarFrame.document.getElementById("titleText");
+	//if (!titleText) return;
+	//var h=titleText.offsetHeight; <%-- default 13 --%>
+	//if(h<=19){
+	//	return; <%-- no need to resize up to 19px --%>
+	//}
+	//document.getElementById("viewFrameset").setAttribute("rows", (11+h)+",*"); <%-- default 24 --%>
+	//window.<%=view.getName()%>ToolbarFrame.document.getElementById("titleTextTableDiv").style.height=(9+h)+"px"; <%-- default 22 --%>
 <%}%>
 }
 
@@ -65,9 +65,7 @@ function onShow()
 
 </head>
 
-<frameset id="viewFrameset" onload="onloadHandler()" rows="24,*" frameborder="0" framespacing="0" border=0  >
-	<frame id="toolbar" name="<%=view.getName()%>ToolbarFrame" title="<%=ServletResources.getString(view.getName()+"ViewToolbar", request)%>" 
-	    src=''  marginwidth="0" marginheight="0" scrolling="no" frameborder="0" noresize=0>
+<frameset id="viewFrameset" onload="onloadHandler()" rows="*" frameborder="1" framespacing="0" border=0  >
 
 	<%
 	if (view.isDeferred()) {

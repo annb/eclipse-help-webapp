@@ -35,8 +35,6 @@ HTML {
  }
 
 BODY {
-	margin:0px 10px 0px 20px;
-	padding:0px;
 	/* Mozilla does not like width:100%, so we set height only */
 	height:100%;
 	position : relative;  // Needed for Safari
