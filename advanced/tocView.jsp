@@ -24,6 +24,12 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/global.css" rel="stylesheet">
 <style type="text/css">
+	.hidden {
+		display: none;
+	}
+	.h {
+		visibility: hidden;
+	}
 </style>  
     
 <base target="ContentViewFrame">
@@ -33,6 +39,7 @@
 <script language="JavaScript" src="utils.js"></script>
 <script language="JavaScript" src="tocTree.js"></script>
 <script language="JavaScript" src="view.js"></script>
+<script language="JavaScript" src="jquery.js"></script>
 
 <script language="JavaScript">
 
@@ -69,22 +76,65 @@ var isRTL = <%=isRTL%>;
 var tocTitle = "";
 var tocId = "";
 
-function selectDoc()
+/*$(function(){
+	$("a").click(function(e){
+		e.preventDefault();
+		alert("is clicked");
+		window.location.href=$(this).attr("href");
+		alert(window.location.href);
+	});
+});*/
+
+function onHover(obj){
+	var oldSrc = obj.src;
+	if (oldSrc.indexOf("container") != -1) obj.src = imagesDirectory + "/container_topic_hover.gif";
+	else obj.src = imagesDirectory + "/topic-hover.gif";
+}
+
+function offHover(obj){
+	var oldSrc = obj.src;
+	if (oldSrc.indexOf("container") != -1) obj.src = imagesDirectory + "/container_topic.gif";
+	else obj.src = imagesDirectory + "/topic.gif";
+}
+
+function openDropBox() {
+  var docsList = document.getElementById("listOfDocs");
+  docsList.style.display = "block";
+}
+
+function selectDoc(e, selected)
 {
-  var selectBox = document.getElementById("select_doc");
+  e = e||window.event;
+  e.cancelBubble=!0;
+  var parentDiv = document.getElementById("select_doc");
+  var selectedDoc = selected.firstChild.data;
+  document.getElementById("currentItem").innerHTML = selectedDoc;
+  document.getElementById("listOfDocs").style.display = "none";
   document.getElementById("tree_root").innerHTML = "";
-  if (selectBox.options[selectBox.selectedIndex].value == "doc40") loadSelectedDoc("/PLF40/toc.xml");
-  else loadSelectedDoc("/PLF35/toc.xml");
+  if (selectedDoc.indexOf("4.0") != -1) {
+	loadSelectedDoc("/PLF40/toc.xml");
+	document.cookie = "scope=PLF40";
+  } else {
+	loadSelectedDoc("/PLF35/toc.xml");
+	document.cookie = "scope=PLF35";
+  }
 }
 	
 function onloadHandler()
 {
-    setRootAccessibility();
-	//loadChildren(null);
-	loadSelectedDoc("/PLF40/toc.xml");
-	
+	setRootAccessibility();
+	//loadSelectedDoc("/PLF40/toc.xml");
+	document.cookie = "scope=PLF40";
+	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 62) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
+	if (locationHref.indexOf("PLF35") != -1) {
+		loadSelectedDoc("/PLF35/toc.xml");
+		document.getElementById("currentItem").innerHTML = "eXo Platform 3.5";
+	} else {
+		loadSelectedDoc("/PLF40/toc.xml");
+		document.getElementById("currentItem").innerHTML = "eXo Platform 4.0";
+	}
     var slashAdvanced = locationHref.lastIndexOf('/tocView.jsp');
     if(slashAdvanced > 0) {
 	    setAjaxPrefix(locationHref.substr(0, slashAdvanced));
@@ -151,24 +201,23 @@ if (requestData.isIE()){
 <%
     }
 %>
-
+<div id="selectedTopicTitle" style="display: none"></div>
 <div style="width: 100%">
 		<div class="leftBar">
-			<!--a id="maximize_restore" class="iconControll resize" href="javascript:void(0)"><i class="uiIconMiniArrowLeft pull-left" ></i></a-->
-			<div>
-				<div id = "wai_application">
-					<div class="btn-group uiDropdownWithIcon">
-							<div id="select_doc" data-toggle="dropdown" class="btn dropdown-toggle" onclick="openDropBox();">		
-								<span id="currentItem">eXo Platform 4.0</span>		
+			<div class="uiBox">
+				<div id = "wai_application" class="uiContentBox">
+					<div id="select_doc" class="btn-group uiDropdownWithIcon" onclick="openDropBox();">
+							<div data-toggle="dropdown" class="btn dropdown-toggle">		
+								<span id="currentItem"></span>		
 								<i class="spiter"></i>
 								<i class="caret"></i>
 							</div>
 							<ul id="listOfDocs" role="menu" class="dropdown-menu">					
 								<li>							
-									<a href="#" class="OptionItem" onclick="selectDoc(this);">eXo Platform 4.0</a>
+									<a href="../topic/PLF40/home/Document.html" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.0</a>
 								</li>
 								<li>							
-									<a href="#" class="OptionItem" onclick="selectDoc(this);">eXo Platform 3.5</a>
+									<a href="../topic/PLF35/home/Document.html" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 3.5</a>
 								</li>
 							</ul>
 					</div>

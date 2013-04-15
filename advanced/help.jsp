@@ -24,6 +24,7 @@
 <script language="JavaScript">
 <%-- map of maximize listener functions indexed by name --%>
 var maximizeListeners=new Object();
+var isRestored = false;
 function registerMaximizeListener(name, listener){
 	maximizeListeners[name]=listener;
 }
@@ -35,69 +36,47 @@ function notifyMaximizeListeners(maximizedNotRestored){
 	}
 }
 <%-- vars to keep track of frame sizes before max/restore --%>
-var leftCols = "<%=isRTL?"70.5%":"29.5%"%>";
-var rightCols = "<%=isRTL?"29.5%":"70.5%"%>";
+var leftCols = "<%=isRTL?"73%":"25%"%>";
+var centerCols = "2%";
+var rightCols = "<%=isRTL?"25%":"73%"%>";
 <%--
 param title "" for content frame
 --%>
+function resizeFrame(x, y){
+	var frameset = document.getElementById("helpFrameset");
+	var leftSize = ContentFrame.document.body.offsetWidth;
+	var rightSize = NavFrame.document.body.offsetWidth;
+}
+
 function toggleFrame(title)
 {
-	var frameset = document.getElementById("helpFrameset"); 
+	var frameset = document.getElementById("helpFrameset");
 	var navFrameSize = frameset.getAttribute("cols");
-	var comma = navFrameSize.indexOf(',');
-	var left = navFrameSize.substring(0,comma);
-	var right = navFrameSize.substring(comma+1);
+	var left = navFrameSize.split(",")[0];
+	var right = navFrameSize.split(",")[2];
 
 	if (left == "*" || right == "*") {
 		// restore frames
 		frameset.frameSpacing="3";
-		frameset.setAttribute("border", "6");
-		frameset.setAttribute("cols", leftCols+","+rightCols);
+		frameset.setAttribute("cols", leftCols+","+centerCols+","+rightCols);
+		isRestored = true;
 		notifyMaximizeListeners(false);
 	} else {
-		// the "cols" attribute is not always accurate, especially after resizing.
-		// offsetWidth is also not accurate, so we do a combination of both and 
-		// should get a reasonable behavior
-<%
-if(isRTL) {
-%>
-		var leftSize = ContentFrame.document.body.offsetWidth;
-		var rightSize = NavFrame.document.body.offsetWidth;
-<%
-} else {
-%>
-		var leftSize = NavFrame.document.body.offsetWidth;
-		var rightSize = ContentFrame.document.body.offsetWidth;
-<%
-}
-%>
-		
-		leftCols = leftSize * 100 / (leftSize + rightSize);
-		rightCols = 100 - leftCols;
 
-		// maximize the frame.
-		//leftCols = left;
-		//rightCols = right;
-		// Assumption: the content toolbar does not have a default title.
 <%
 if(isRTL) {
 %>
-		//if (title != "") // this is the right side for right-to-left rendering
-		//	frameset.setAttribute("cols", "*,100%");
-		//else // this is the content toolbar
-			frameset.setAttribute("cols", "100%,*");
+			frameset.setAttribute("cols", "98%,2%,*");
 <%
 } else {
 %>
-		//if (title != "") // this is the left side for left-to-right rendering
-		//	frameset.setAttribute("cols", "100%,*");
-		//else // this is the content toolbar
-			frameset.setAttribute("cols", "*,100%");
+			frameset.setAttribute("cols", "*,2%,98%");
 <%
 }
 %>	
+		isRestored = false;
 		frameset.frameSpacing="0";
-		frameset.setAttribute("border", "1");
+		frameset.setAttribute("border", "0");
 		notifyMaximizeListeners(true);
 	}
 }
@@ -115,19 +94,19 @@ if (data.isIE()) {
 <%
 }
 %> 
-    id="helpFrameset" cols="<%=isRTL?"75%,2%,23%":"23%,2%,75%"%>" framespacing="0" border="0"  frameborder="1"   scrolling="no" bordercolor="#FFFFFF">
+    id="helpFrameset" cols="<%=isRTL?"73%,2%,25%":"25%,2%,73%"%>" framespacing="0" border="0"  frameborder="1"   scrolling="no" bordercolor="#FFFFFF">
 <%
 if (isRTL) {
 %>
-   	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=yes>
-	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
-   	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
+   	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=no>
+	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=no>
+   	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=no>
 <%
 } else {
 %>
-   	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
-	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=yes>
-   	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=yes>
+   	<frame class="nav" name="NavFrame" title="<%=ServletResources.getString("ignore", "NavFrame", request)%>" src='<%="nav.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=no>
+	<frame name="ResizeBarFrame" title="Resize Bar Frame" src="resizebar.jsp" marginwidth="0" marginheight="0" scrolling="no" frameborder="1" resize=no>
+   	<frame name="ContentFrame" title="<%=ServletResources.getString("ignore", "ContentFrame", request)%>" class="content" src='<%="content.jsp"+UrlUtil.htmlEncode(data.getQuery())%>' marginwidth="0" marginheight="0" scrolling="no" frameborder="0" resize=no>
 <%
 }
 %>

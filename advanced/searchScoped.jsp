@@ -34,10 +34,6 @@ var advancedDialog;
 
 function openAdvanced() 
 { 
-    //var scope = document.getElementById("scope").firstChild;
-    //var workingSet = ""; 
-    //if (scope != null) 
-              //workingSet = document.getElementById("scope").firstChild.nodeValue;
     var workingSet = "All topics";
     var minSize = 300; 
     var maxHeight= 500;  
@@ -103,7 +99,6 @@ function closeAdvanced()
  */
 function doSearch(query, noRefocus)
 {
-	//var workingSet = document.getElementById("scope").firstChild.nodeValue;
 	var workingSet = "All topics";
 
 	var form = document.forms["searchForm"];
@@ -188,7 +183,7 @@ function onloadHandler(e)
 
 <div  class="uiGrayLightBox searchBar clearfix">
 	<div class="pull-right actionBar">
-		<a class="btn btn-primary"><i class="uiIconDownload uiIconWhite"></i> PDF</a>
+		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.org/portal/private/classic/documentation"><i class="uiIconDownload uiIconWhite"></i> PDF</a>
 		<div class="pull-right setting dropdown">
 			 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				<i class="uiIconSetting"></i> 
@@ -206,37 +201,21 @@ function onloadHandler(e)
 	</div>
 	
 	<div class="uiSearchForm uiSearchInput pull-left">
+		<input id="searchScope" type="hidden" name="Scope" value="" >
 		<form  name="searchForm"   onsubmit="doSearch();">
 			<div>
 				<input type="text" id="searchWord" name="searchWord" alt="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>" 
 					       title="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>">
+				<a href="javascript:void(0);" class="search-button" onclick="doSearch();">search</a>
+				<input type="hidden" name="maxHits" value="500" >
 			</div>
 		</form>
 	</div>
 	
-	<ul class="breadcrumb">       
-	   <li class="">       
-             <a href="/portal/intranet/wiki/WikiHome">Wiki Home</a>    
-		</li>		
-         <li class="active"><span class="uiIconMiniArrowRight">&nbsp;</span>Edit Page</li>  
-	</ul>	
+	<div id="newBreadcrumbs" class="breadcrumb">       
+	
+	</div>	
 </div>
-	<!--form  name="searchForm"   onsubmit="doSearch()">
-		<div class="box-gray">	
-			<div class="pull-right action-button">
-				<a class="btn btn-primary"></a>
-			</div>
-			<input type="hidden" name="maxHits" value="500" >
-			<div class="uiSearchInput may">
-				<input type="text" id="searchWord" name="searchWord" value='' size="24" maxlength="256" 
-					       alt="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>" 
-					       title="<%=UrlUtil.htmlEncode(ServletResources.getString("expression_label", request))%>">
-			</div>
-			<div class=""></div>
-
-		</div>
-	</form-->		
-
 </body>
 </html>
 

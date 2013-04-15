@@ -12,6 +12,11 @@
 
 <% 
 	SearchData data = new SearchData(application, request, response);
+	Cookie[] cookies = request.getCookies();
+	String scope = "";
+	for (int i = 0; i < cookies.length; i++) {
+		if (cookies[i].getName().contains("scope")) scope = cookies[i].getValue();
+	}
 	WebappPreferences prefs = data.getPrefs();
 %>
 
@@ -76,19 +81,12 @@ function toggleShowDescriptions() {
 
 function onShow() { 
 }
-
-
-/*function backToContent() {
-	parent.parent.HelpFrame.NavFrame.showView("content");
-}*/
-
 </script>
 
 
 </head>
 
 <body dir="<%=direction%>">
-
 <%
 	String preResults = data.getPreProcessorResults();
 
@@ -105,19 +103,6 @@ if (!data.isSearchRequest()) {
 	out.write(data.getQueryExceptionMessage());
 } else if (data.isProgressRequest()) {
 %>
-
-<CENTER>
-<TABLE BORDER='0'>
-	<TR><TD><%=ServletResources.getString("Indexing", request)%></TD></TR>
-	<TR><TD ALIGN='<%=isRTL?"RIGHT":"LEFT"%>'>
-		<DIV STYLE='width:100px;height:16px;border:1px solid ThreeDShadow;'>
-			<DIV ID='divProgress' STYLE='width:<%=data.getIndexedPercentage()%>px;height:100%;background-color:Highlight'></DIV>
-		</DIV>
-	</TD></TR>
-	<TR><TD><%=data.getIndexedPercentage()%>% <%=ServletResources.getString("complete", request)%></TD></TR>
-	<TR><TD><br><%=ServletResources.getString("IndexingPleaseWait", request)%></TD></TR>
-</TABLE>
-</CENTER>
 <script language='JavaScript'>
 setTimeout('refresh()', 2000);
 </script>
@@ -133,22 +118,29 @@ setTimeout('refresh()', 2000);
 <a class="showall" onclick="showAll();" ><%=ServletResources.getString("showAllLink", request)%></a>
 <%
     }
-} else { // data.getResultsCount() != 0
+} else {
+	String matchResult = UrlUtil.htmlEncode(data.getMatchesInScopeMessage());
+	int f = matchResult.indexOf("All topics");
+	String newResult = matchResult.substring(0, f);
+	String scopeLabel = "";
+	if (scope.contains("PLF40")) scopeLabel = "Platform 4.0 Documentation";
+	else scopeLabel = "Platform 3.5 Documentation";
+	newResult += scopeLabel;// data.getResultsCount() != 0
 %>
-<p><b><%=UrlUtil.htmlEncode(data.getMatchesInScopeMessage())%></b>
+<div style="font-size: 15px;"><b><%=newResult%></b></div>
+<div style="margin-bottom: 10px"><center>
 <%
     if (data.isScopeActive()) {
 %>
-&nbsp;<a class="showall" onclick="showAll();" ><%=ServletResources.getString("showAllLink", request)%></a>
+<a class="showall" onclick="showAll();"><%=ServletResources.getString("showAllLink", request)%></a>
 <% 
     } else {
 %>
-    &nbsp;<a class="showall" onclick="backToContent();" ><%=ServletResources.getString("BackToContent", request)%></a>
+<a class="showall" onclick="backToContent();"><%=ServletResources.getString("BackToContent", request)%></a>
 <%
     }
 %>
-</p>
-
+</center></div>
 
 <table class="results" cellspacing='0'>
 
@@ -156,6 +148,7 @@ setTimeout('refresh()', 2000);
 	String oldCat = null;
 	for (int topic = 0; topic < data.getResultsCount(); topic++)
 	{
+	    if (data.getTopicHref(topic).contains(scope)) {
 		if(data.isActivityFiltering() && !data.isEnabled(topic)){
 			continue;
 		}
@@ -245,6 +238,7 @@ setTimeout('refresh()', 2000);
 </tr>
 <%
 		}
+	    }
 	}
 %>
 </table>

@@ -12,6 +12,7 @@
 .help_breadcrumbs {
 	font: message-box;
 	margin-bottom: 10px;
+	display: none;
 }
 
 body {

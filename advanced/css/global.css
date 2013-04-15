@@ -1815,6 +1815,9 @@ textarea[readonly] {
 .table-striped tr:nth-child(even) td {
   background-color: #ffffff;
 }
+.uiGrid.border tbody td {
+  border-bottom: 1px solid #cfcfcf;
+}
 .uiGrid.rounded-corners {
   border-collapse: separate;
   -webkit-box-shadow: 0 1px 2px rgba(13, 13, 13, 0.1);
@@ -1944,24 +1947,37 @@ textarea[readonly] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 140px;
 }
 .breadcrumb .active > a {
   color: #999999;
 }
 .searchBar .breadcrumb {
-  margin: 3px 0 0 315px;
+  margin: 3px 0 0 370px;
+}
+.uiSearchInput {
+  position: relative;
 }
 .uiSearchInput form {
   margin: 0;
 }
 .uiSearchInput input[type="text"] {
-  background: #ffffff url(../images/Search.png) no-repeat right -1px;
   margin: 0;
-  padding-right: 24px;
+  width: 272px;
 }
-.uiSearchInput input[type="text"]:hover {
-  background-position: right -28px;
+.uiSearchInput .search-button {
+  background: url("../images/Search.png") no-repeat scroll right -6px;
+  display: block;
+  width: 20px;
+  height: 16px;
+  position: absolute;
+  right: 2px;
+  text-indent: -9999px;
+  cursor: pointer;
+  outline: none;
+  top: 6px;
+}
+.uiSearchInput .search-button:hover {
+  background-position: right -33px;
 }
 .root img {
   vertical-align: middle;
@@ -1978,13 +1994,14 @@ textarea[readonly] {
   margin: 0 0 0 20px;
 }
 .root .group .item {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 .leftBar {
   margin: 0 10px;
+}
+.leftBar .uiBox .uiContentBox {
+  padding: 10px;
+  overflow: auto;
 }
 .leftBar .uiSelectbox {
   width: 100%;
@@ -2007,7 +2024,7 @@ textarea[readonly] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 180px;
+  width: 218px;
   vertical-align: middle;
 }
 .leftBar .uiDropdownWithIcon .dropdown-menu {
@@ -2110,7 +2127,7 @@ textarea[readonly] {
   -moz-border-radius: 3px;
   border-radius: 3px;
   background: #2f5e92;
-  content: "";
+  content: "&bull;";
 }
 .resize a {
   background-color: #f9f9f9;
@@ -2147,6 +2164,43 @@ textarea[readonly] {
   margin: auto;
   min-height: 300px;
   cursor: col-resize;
+}
+.border-bottom-dottted {
+  border-bottom: 1px dotted #cfcfcf;
+  padding-bottom: 15px;
+  margin: 0 0 15px 0;
+}
+.article-block {
+  margin: 20px 0;
+}
+.article-block .widgetBar {
+  width: 268px;
+}
+.article-block .widgetBar.pull-left + .theContent {
+  margin-left: 298px;
+}
+.article-block .widgetBar.pull-right + .theContent {
+  margin-right: 298px;
+}
+.article-block .theContent h5.border-bottom-dottted.inline-block {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.litstItem {
+  list-style: none;
+  margin-left: 10px;
+}
+.litstItem li, .litstItem li a {
+  color: #345f8f;
+  font-family: "Helvetica Neue Bold", Helvetica, Lucida, Arial, sans-serif;
+  font-weight: 600;
+}
+.litstItem li {
+  padding: 5px 0 5px 16px;
+  background: url(../images/icons/list-arrow-right.png) no-repeat 0px 10px;
+}
+.inline-block {
+  display: inline-block;
 }
 body {
   margin: 0;

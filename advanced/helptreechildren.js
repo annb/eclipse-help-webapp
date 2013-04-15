@@ -147,6 +147,7 @@ function mergeChildren(treeItem, nodes, level) {
                 var isSelected = node.getAttribute("is_selected");                   
                 if (isSelected) {
                     selectedNode = childItem;
+		    document.getElementById("selectedTopicTitle").innerHTML=title;
                     highlightSelectedNode = node.getAttribute("is_highlighted");
                 }
                 childAdded = true;

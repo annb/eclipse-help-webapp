@@ -27,4 +27,6 @@ function rescope() {
 
 function backToContent(){
     parent.parent.parent.parent.parent.HelpFrame.NavFrame.showView("toc");
+    var searchInput = parent.parent.parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("searchWord");
+    searchInput.value="";
 }
