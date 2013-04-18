@@ -23,6 +23,7 @@
 <title><%=ServletResources.getString("Content", request)%></title>
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/global.css" rel="stylesheet">
+	<script language="JavaScript" src="jquery.js"></script>
 <style type="text/css">
 	.hidden {
 		display: none;
@@ -30,6 +31,22 @@
 	.h {
 		visibility: hidden;
 	}
+	.topic a {
+		background: url('images/container_topic.gif') no-repeat scroll left top transparent;
+		padding-left: 20px;
+	}
+	.topic a:hover {
+		background: url('images/container_topic_hover.gif') no-repeat scroll left top transparent;
+		padding-left: 20px;
+	}
+	.leaf a {
+		background: url('images/topic.gif') no-repeat scroll left top transparent;
+		padding-left: 20px;
+	}
+	.leaf a:hover {
+		background: url('images/topic_hover.gif') no-repeat scroll left top transparent;
+		padding-left: 20px;
+	}	
 </style>  
     
 <base target="ContentViewFrame">
@@ -76,16 +93,20 @@ var isRTL = <%=isRTL%>;
 var tocTitle = "";
 var tocId = "";
 
-/*$(function(){
-	$("a").click(function(e){
-		e.preventDefault();
-		alert("is clicked");
-		window.location.href=$(this).attr("href");
-		alert(window.location.href);
+$(function(){
+	$("#listOfDocs").hover(function(){
+		$("#listOfDocs").show();
+	},
+	function(){
+		$("#listOfDocs").hide();
 	});
-});*/
+	
+	/*$("#tree_root").live("mouseover", ".selector", function(){
+		$("#tree_root").html($(this).closest("img").attr("src"));
+	});*/
+});
 
-function onHover(obj){
+/*function onHover(obj){
 	var oldSrc = obj.src;
 	if (oldSrc.indexOf("container") != -1) obj.src = imagesDirectory + "/container_topic_hover.gif";
 	else obj.src = imagesDirectory + "/topic-hover.gif";
@@ -95,7 +116,7 @@ function offHover(obj){
 	var oldSrc = obj.src;
 	if (oldSrc.indexOf("container") != -1) obj.src = imagesDirectory + "/container_topic.gif";
 	else obj.src = imagesDirectory + "/topic.gif";
-}
+}*/
 
 function openDropBox() {
   var docsList = document.getElementById("listOfDocs");
@@ -123,9 +144,8 @@ function selectDoc(e, selected)
 function onloadHandler()
 {
 	setRootAccessibility();
-	//loadSelectedDoc("/PLF40/toc.xml");
 	document.cookie = "scope=PLF40";
-	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 62) + "px";
+	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
 	if (locationHref.indexOf("PLF35") != -1) {
@@ -214,10 +234,10 @@ if (requestData.isIE()){
 							</div>
 							<ul id="listOfDocs" role="menu" class="dropdown-menu">					
 								<li>							
-									<a href="../topic/PLF40/home/Document.html" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.0</a>
+									<a href="../topic/PLF40/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.0</a>
 								</li>
 								<li>							
-									<a href="../topic/PLF35/home/Document.html" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 3.5</a>
+									<a href="../topic/PLF35/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 3.5</a>
 								</li>
 							</ul>
 					</div>

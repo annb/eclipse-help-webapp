@@ -1928,7 +1928,7 @@ textarea[readonly] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 140px;
+  max-width: 180px;
   float: left;
 }
 .breadcrumb a:hover {
@@ -1952,7 +1952,7 @@ textarea[readonly] {
   color: #999999;
 }
 .searchBar .breadcrumb {
-  margin: 3px 0 0 370px;
+  margin: 3px 0 0 325px;
 }
 .uiSearchInput {
   position: relative;
@@ -2163,7 +2163,7 @@ textarea[readonly] {
   border-left: 1px solid #cfcfcf;
   margin: auto;
   min-height: 300px;
-  cursor: col-resize;
+  /*cursor: col-resize;*/
 }
 .border-bottom-dottted {
   border-bottom: 1px dotted #cfcfcf;

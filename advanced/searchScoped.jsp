@@ -25,8 +25,24 @@
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
-
+<script language="JavaScript" src="jquery.js"></script>
 <script language="JavaScript">
+$(function(){
+	$("#settingButton").hover(function(){
+		$("#settingButton").show();
+	},
+	function(){
+		$("#settingButton").hide();
+	});
+});
+
+function printContent(button, param){
+	try {
+		parent.parent.parent.HelpFrame.ContentFrame.ContentViewFrame.focus();
+		parent.parent.parent.HelpFrame.ContentFrame.ContentViewFrame.print();
+	} catch(e) {}	
+}
+
 var isIE = navigator.userAgent.indexOf('MSIE') != -1;
 var isMozilla = navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && parseInt(navigator.appVersion.substring(0,1)) >= 5;
 
@@ -161,6 +177,11 @@ function fixHeights()
 	document.getElementById("go").style.height = h;
 }
 
+function openDropBox() {
+  var docsList = document.getElementById("settingButton");
+  docsList.style.display = "block";
+}
+
 function onloadHandler(e)
 {
 	var form = document.forms["searchForm"];
@@ -183,21 +204,18 @@ function onloadHandler(e)
 
 <div  class="uiGrayLightBox searchBar clearfix">
 	<div class="pull-right actionBar">
-		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.org/portal/private/classic/documentation"><i class="uiIconDownload uiIconWhite"></i> PDF</a>
-		<div class="pull-right setting dropdown">
+		<!--div class="pull-right setting dropdown"  onclick="openDropBox();">
 			 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				<i class="uiIconSetting"></i> 
 				<span class="caret"></span>
 			 </a>
-			<ul class="dropdown-menu">
-				 <li><a href="#" tabindex="-1">Action</a></li>
-                  <li><a href="#" tabindex="-1">Another action</a></li>
-                  <li><a href="#" tabindex="-1">Something else here</a></li>
-                  <li class="divider"></li>
-				   <li><a href="#" tabindex="-1">Another action</a></li>
-                  <li><a href="#" tabindex="-1">Something else here</a></li>
+			<ul id="settingButton" class="dropdown-menu">
+				 <li><a href="http://community.exoplatform.com/portal/classic/documentation-public" target="_top" tabindex="-1">HTML Version</a></li>
+				<li class="divider"></li>
+				<li><a id="printButton" href="javascript:printContent('printButton','');" tabindex="-1">Print Page</a></li>
 			</ul>
-		</div>
+		</div-->
+		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.org/portal/private/classic/documentation"><i class="uiIconDownload uiIconWhite"></i> PDF</a>		
 	</div>
 	
 	<div class="uiSearchForm uiSearchInput pull-left">

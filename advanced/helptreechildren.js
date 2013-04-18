@@ -38,7 +38,7 @@ function updateTree(xml) {
 	 for (var i=0; i <nodes.length; i++) {
 		 if (nodes[i].tagName == "node") {
 			 var nodeName = nodes[i].getAttribute("title");
-			 if (nodeName.contains("eXo Platform 3.5 Documentation") || nodeName.contains("eXo Platform 4.0 Documentation")) {
+			 if ((nodeName.indexOf("eXo Platform 3.5 Documentation") != -1) || (nodeName.indexOf("eXo Platform 4.0 Documentation") != -1)) {
 				 var selectBox = document.getElementById("select_doc");
 				 var child = document.createElement("OPTION");
 				 child.appendChild(document.createTextNode(nodeName));
@@ -136,9 +136,7 @@ function mergeChildren(treeItem, nodes, level) {
                     if (node.getAttribute("closedImage")) {
                         closedImage = "../topic" + node.getAttribute("closedImage");
                     }
-		    //if (!title.contains("eXo Platform 3.5 Documentation") && !title.contains("eXo Platform 4.0 Documentation")){
 			    childItem = addChild(childContainer, id, title, href, openImage, closedImage, imageAltText, isLeaf, nodeIndex, childCount, level + 1);
-		    //}
                 }
                
                 if (!isLeaf) {
@@ -207,17 +205,17 @@ function addChild(treeItem, id, name, href, image, closedImage, imageAltText,
     childItem.nodeid = id;
     //alert(childItem.nodeid);
     treeItem.appendChild(childItem);
-    if (name.contains("eXo Platform 3.5 Documentation") || name.contains("eXo Platform 4.0 Documentation")) return childItem;
+    if ((name.indexOf("eXo Platform 3.5 Documentation") !=-1) || (name.indexOf("eXo Platform 4.0 Documentation") !=-1)) return childItem;
     
     // Create a span to prevent line breaking
     var container = document.createElement("SPAN");
-    container.className = "item";
+    if (isLeaf) container.className = "item leaf";
+    else container.className = "item topic";
     childItem.appendChild(container);
    
-    var topicImage;
+    /*var topicImage;
     if (image) {
         topicImage = document.createElement("IMG");
-        //setImage(topicImage, image); 
         if (closedImage) {          
             topicImage.src = closedImage;
             topicImage.openImage = image;
@@ -226,7 +224,7 @@ function addChild(treeItem, id, name, href, image, closedImage, imageAltText,
             topicImage.src = image;
         }
         topicImage.alt = imageAltText;
-    } 
+    } */
     
     var topicName=document.createTextNode(name);
     
@@ -256,9 +254,9 @@ function addChild(treeItem, id, name, href, image, closedImage, imageAltText,
     setAccessibilityPosition(anchor, position); 
     setAccessibilityTreeLevel(anchor, level);
     
-    if (topicImage) {
+    /*if (topicImage) {
         anchor.appendChild(topicImage);
-    }
+    }*/
     anchor.appendChild(topicName);
     container.appendChild(anchor);
     
