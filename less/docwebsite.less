@@ -1,0 +1,404 @@
+
+//header
+.uiHeaderPageDocument ul li{
+	float: left;	
+	background: none;
+	padding: 0;
+	margin:  0 0 0 1px;
+	   list-style: none outside none;
+}
+
+.uiHeaderPageDocument{
+	background: url("../background/bg-header.png") repeat left top;
+	height: 50px;
+	border-bottom: 1px solid #2d2d2d;
+	box-shadow: 0 2px 4px rgba(13,13,13,0.42);
+}
+
+.uiHeaderPageDocument .logo{
+	background: url("../background/Logo.png") no-repeat left top;
+	width: 178px;
+	height: 30px;
+	display: block;
+	margin: 8px 0px 0px 10px;
+}
+
+.uiHeaderPageDocument .menu .navigationTop{
+	 background: none;
+    border-radius: 0;
+    height: 36px;
+    padding: 15px 0 0 235px;
+    margin: 0;
+}
+
+.uiHeaderPageDocument .menu .navigationTop a{
+	color: #fff;
+	line-height:20px;
+	padding:6px 10px;
+	font-family:'HelveticaNeue',lucida sans,arial,tahoma,verdana,sans-serif;
+	font-size: 14px;
+	text-decoration: none;
+}
+.uiHeaderPageDocument .menu .navigationTop li + li a {
+	background: url("../background/split-icon.png") no-repeat center left;
+}
+.uiHeaderPageDocument .menu .navigationTop a:hover ,
+.uiHeaderPageDocument .menu .navigationTop .selectedNavigationTab {
+	border-radius: 3px;
+	background: #4b6b9a;
+}
+.uiHeaderPageDocument .btn-group {
+	padding: 11px 10px 0 0px; 
+}
+
+.uiHeaderPageDocument .btn-group  .btn-lightBlue,.uiHeaderPageDocument .btn-group .btn-darkGray {
+  border-color: transparent;
+  .box-shadow( 0 0 0 transparent);
+  border: none;
+	font-size: 12px;
+font-family: 'HelveticaNeue Medium' , HelveticaNeue, arial;
+}
+
+.uiHeaderPageDocument .btn-group a {
+	text-decoration: none;
+}
+.uiHeaderPageDocument .menu .navigationTop .linkDoc30{
+	color: @white;
+	line-height:36px;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 12px;
+	float: right;
+}
+
+.UIFooterPageDocument{
+	color: #63687a;
+	text-align: center;
+	height: 40px;
+	font-size: 11px;
+	font-family:lucida sans,arial,tahoma,verdana,sans-serif;
+}
+
+//hardcode fix later
+.btn-lightBlue {  
+  .buttonBackground(#5a85c5, #3c5781, @white, 0 -1px 0 rgba(0, 0, 0, 0.25));
+  &:hover {
+    #gradient > .vertical(#5a85c5, #5a85c5);
+  }
+
+}
+.btn-darkGray {
+  .buttonBackground(#697582, #3f4851, @white, 0 -1px 0 rgba(0, 0, 0, 0.25));
+   &:hover {
+    #gradient > .vertical(#697582, #697582);
+  }
+
+}
+
+//left bar
+.leftBar {
+	margin: 0 10px;
+	.uiBox .uiContentBox {
+		padding: 10px;
+		overflow: auto;
+	}
+	.uiSelectbox {
+		width: 100%;
+		background-image: url(../images/arrow.png), -moz-linear-gradient(top, #FFF, #f1f1f1); // FF 3.6+
+		background-image: url(../images/arrow.png),-webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#f1f1f1)); // Safari 4+, Chrome 2+
+		background-image: url(../images/arrow.png),-webkit-linear-gradient(top, #FFF, #f1f1f1); // Safari 5.1+, Chrome 10+
+		background-image: url(../images/arrow.png),-o-linear-gradient(top, #FFF, #f1f1f1); // Opera 11.10
+		background-image: url(../images/arrow.png),linear-gradient(to bottom, #FFF, #f1f1f1); // Standard, IE10
+		background-repeat: no-repeat, repeat-x;
+		background-position: right top,0 0;  
+	}
+
+
+	.uiSelectbox select {
+		.size(26px,101%);
+		font-weight: bold;
+	}
+	.uiDropdownWithIcon  {
+		.btn.dropdown-toggle span {
+			display: inline-block;
+			text-align: left;
+			.text-overflow;
+			width: 218px;
+			vertical-align: middle;
+		}
+		.dropdown-menu {
+			width: 100%;
+		}
+	}
+}
+
+//search bar
+.searchBar   {
+	margin: 0 10px;
+	.caret {
+		  vertical-align: 4px;
+	}
+	.setting {
+		margin: 5px 0 0 10px;
+	}
+}
+
+//main content
+
+.mainContent {
+	.gadient-top {
+		.size(15px,98%);  position: fixed;
+		top: 1px;
+		#gradient .vertical(rgba(255,255,255,0.6),rgba(255,255,255,0.2));
+		z-index: 10;
+		margin: 0 0 0 2px;
+	}
+	margin-left: 10px;
+	.uiContentBox {padding-top:0;}
+	.heading {
+		padding-bottom: 10px;
+		border-bottom: 1px dotted @tableBorder;
+		border-left: 0;
+		color: @linkColor;
+	}
+	.heading-gray {
+		border: 1px solid @tableBorder;
+		background: #ededed url(../images/IconDocs.png) no-repeat;
+		padding: 8px 10px 8px 54px;
+		.border-radius(@baseBorderRadius);color: @textColor;
+		&.iconNew {
+			background-position: 15px  4px;
+		}
+		&.iconOtherSource {
+			background-position: 15px  -92px;
+		}
+		
+		&.iconHowto {
+			background-position: 15px  -46px;
+		}
+	}
+	.blog-area {
+		margin: 15px 0;
+		.corner-rounder {
+			margin-left: 15px;
+			&+ .theContent {
+				padding-left: 30px;
+			}
+		}
+		.theContent {
+			padding-left: 15px;
+		}
+	}
+	.corner-rounder {
+		background: @white;border: 1px solid @tableBorder;
+		padding: 5px 10px ;
+		.border-radius(@baseBorderRadius);color: @textColor;
+	}
+	ul {
+			 margin: 0 0 10px 4px;
+			 padding: 0;
+			 list-style: none;
+			li {
+			  position: relative;
+			  line-height: 24px;
+			}
+			li:before {
+			  position: absolute;
+			  top: 8px;
+			  margin: 0px 0 0 -12px;
+			  vertical-align: middle;
+			 display: inline-block;
+			  width: 6px;
+			  height: 6px;
+			  .border-radius(3px);
+			  background: @linkColor;
+			  content: "";
+		}
+	}
+}
+
+.resize {
+	a {
+		#gradient > .vertical(@btnBackground,@btnBackgroundHighlight); 
+		border: 1px solid @tableBorder;
+		border-right: 0;		
+		padding: 4px 0;
+		display: block;
+		cursor: pointer;
+		float: left;
+		margin-left: 2px;	
+		outline: none;		
+		.border-radius(@borderRadiusSmall 0  0 @borderRadiusSmall);
+	}
+	&.resizeLt {
+		a {	
+			.border-radius(0 @borderRadiusSmall @borderRadiusSmall 0);
+			border-right: 1px solid @tableBorder;	
+			border-left: 0;	
+			margin-left: 0px;		
+		}
+	}
+	
+	.line {
+		width:2px; 
+		border-left: 1px solid @tableBorder; 
+		margin:auto; 
+		min-height: 300px;
+		cursor: col-resize;
+	  }
+}
+
+.border-bottom-dottted {
+	border-bottom: 1px dotted @tableBorder;
+	padding-bottom: 15px;
+	margin: 0 0 15px 0;
+}
+
+.article-block {
+	margin : 20px 0;
+	.widgetBar {
+		width: 268px;
+		&.pull-left {
+			&+ .theContent {
+				margin-left: 298px; 
+			}
+		}
+		&.pull-right {
+			&+ .theContent {
+				margin-right: 298px; 
+			}
+		}
+		
+	}
+	.theContent {
+		h5.border-bottom-dottted.inline-block {
+			padding-bottom: 5px;
+			margin-bottom: 5px;
+		}
+	}
+}
+
+.litstItem {
+	li , li a {
+		color: #345f8f;
+		font-family: @sansBoldFontFamily  ;
+		font-weight: 600;
+	}
+	list-style: none;
+	margin-left: 10px;
+	li {
+	  padding: 5px 0 5px 16px;
+	  background: url(../images/icons/list-arrow-right.png) no-repeat 0px 10px;
+	}
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+
+//404 page
+
+.errorPage {
+	margin: 80px 0;
+	text-align: center;
+	.icon-404 {
+		margin: 0 auto 25px;
+		text-indent: -9999px;
+		background: url(../background/404-icon.png) no-repeat left top;
+		.square(143px);
+	}
+	h3 {
+		font-size: 24px;
+		color: #999;
+	}
+	h4 {
+		font-weight: normal;
+		color: #808080;
+	}
+	.btn {
+		width: 70px;
+	}
+	p {
+		line-height: 24px;
+	}
+}
+
+/**********************************************
+    ADDITION
+***********************************************/
+
+ul.bulletlist li {
+ color: #2F5E92;
+ list-style-type: disc;
+}
+
+
+ul li span {
+ color : #000000;
+}
+
+.litstItem li{
+ list-style-type: none;
+}
+
+/*Documentation 4.0 - Style for the page navigation*/
+.doc-navigation {
+	border-top: 1px dotted #c7c7c7;
+	border-bottom: 1px dotted #c7c7c7;
+	padding: 15px 0;
+	margin: 15px 0;
+	ul {
+		margin: 0;
+	}
+	li {
+		list-style-type: none;
+		line-height: 16px;
+		margin-bottom: 0;
+		a {
+			background: url(../images/doc-navigation.png) no-repeat 0px 0px;
+			display: inline-block;
+			padding-left: 20px;
+			.text-overflow;
+			max-width: 200px;
+			margin-top: 2px;
+		}
+	}
+	.next a{
+		background-position: right 6px;
+		padding: 0 20px 0 0;
+		&:hover {
+			background-position: right -86px;
+		}
+	}
+	.previous a {
+		background-position: 0px -41px;
+		&:hover {
+			background-position: 0px -134px;
+		}
+	}
+	.up  a{
+		background-position: 0px -274px;
+		&:hover {
+			background-position: 0px -320px;
+		}
+	}
+	.home a{
+		background-position: 0px -183px;
+		&:hover {
+			background-position: 0px -229px;
+		}
+	}
+	.doc-navtitle {
+		float: left;
+	}
+	.doc-nav {
+		float: right;
+	}
+	a {
+		color: @textColor;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}

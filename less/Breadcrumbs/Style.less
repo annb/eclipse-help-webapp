@@ -1,0 +1,45 @@
+.breadcrumb {
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	
+	a {
+		color: @grayDark;
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		/*max-width: 140px;*/
+		float: left;
+		&:hover {
+			color: #2f5e92;
+			text-decoration: none !important;
+		}
+	}
+	/* UPDATE BREADCRUMB FOR THE IMAGE SIZE*/
+	.uiIconMiniArrowRight{	
+		float: left;			
+		height: 9px;
+		margin: 3px;
+		padding-bottom: 1px;
+		width: 6px;
+	}
+
+	li {
+		vertical-align: middle;
+	}
+	
+	.active {
+		font-weight: bold;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		> a {
+			color: @grayLight;
+		}
+	}
+}
+
+.searchBar  .breadcrumb {
+	margin: 3px 0 0 325px;
+}
