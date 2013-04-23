@@ -10,9 +10,9 @@
  *******************************************************************************/
 
 body {
-    <%=prefs.getViewBackgroundStyle()%>
+    	<%=prefs.getViewBackgroundStyle()%>
 	color: WindowText;
-	font: <%=prefs.getViewFont()%>;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 0px;
 	border: 0px;
 	margin-top: 5px;
@@ -22,15 +22,32 @@ body {
 	cursor: default;
 }
 
+span {
+	font-size: 14px;
+}
+
 table {
-	font: <%=prefs.getViewFont()%>;
+	font-size: 13px;
 	width: 100%;
 	table-layout: fixed;
 }
 
+.index {
+	width:100px;
+	height:16px;
+	border:1px solid ThreeDShadow;
+}
+
+#divProgress {
+	height:100%;
+	background-color:Highlight;
+}
+
 a {
+	color: #285A92;
 	text-decoration:none; 
 	padding:0px;
+	font-size:13px;
 }
 
 a:hover {
@@ -56,10 +73,24 @@ a:hover {
 	height:100%;
 }
 
-.showall {
-    text-decoration:underline; 
-    color:#0066FF; 
-	cursor:pointer;
+.showall a{
+	height: 16px;
+	display: block;
+	background: url('images/back_icon.png') no-repeat scroll right top transparent;
+}
+
+.showintoc a{
+	height: 16px;
+	display: block;
+	background: url('images/show_icon.png') no-repeat scroll right top transparent;
+}
+
+.showall a:hover{
+	background: url('images/back_hover_icon.png') no-repeat scroll right top transparent;
+}
+
+.showintoc a:hover{
+	background: url('images/show_hover_icon.png') no-repeat scroll right top transparent;
 }
 
 #menu {
@@ -91,4 +122,5 @@ a:hover {
 
 .description {
 	display: <%=data.isShowDescriptions() ? "block" : "none"%>;
+	font-size:13px;
 }

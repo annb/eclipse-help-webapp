@@ -46,7 +46,10 @@
 	.leaf a:hover {
 		background: url('images/topic_hover.gif') no-repeat scroll left top transparent;
 		padding-left: 20px;
-	}	
+	}
+	a.active {
+		font-weight: bold;
+	}
 </style>  
     
 <base target="ContentViewFrame">

@@ -103,6 +103,18 @@ if (!data.isSearchRequest()) {
 	out.write(data.getQueryExceptionMessage());
 } else if (data.isProgressRequest()) {
 %>
+<center>
+<table border='0'>
+	<tr><td><div style="font-size: 13px"><%=ServletResources.getString("Indexing", request)%></div></td></tr>
+	<tr><td align='<%=isRTL?"RIGHT":"LEFT"%>'>
+		<div class='index'>
+			<div id='divProgress' style='width:<%=data.getIndexedPercentage()%>px;'></div>
+		</div>
+	</td></tr>
+	<tr><td><div style="font-size: 13px;"><%=data.getIndexedPercentage()%>% <%=ServletResources.getString("complete", request)%></div></td></tr>
+	<tr><td><div style="font-size: 13px;"><br><%=ServletResources.getString("IndexingPleaseWait", request)%></div></td></tr>
+</table>
+</center>
 <script language='JavaScript'>
 setTimeout('refresh()', 2000);
 </script>
@@ -123,25 +135,23 @@ setTimeout('refresh()', 2000);
 	int f = matchResult.indexOf("All topics");
 	String newResult = matchResult.substring(0, f);
 	String scopeLabel = "";
-	if (scope.contains("PLF40")) scopeLabel = "Platform 4.0 Documentation";
-	else scopeLabel = "Platform 3.5 Documentation";
-	newResult += scopeLabel;// data.getResultsCount() != 0
+	if (scope.contains("PLF40")) scopeLabel = "eXo Platform 4.0";
+	else scopeLabel = "eXo Platform 3.5";
+	newResult += scopeLabel;
 %>
-<div style="font-size: 15px;"><b><%=newResult%></b></div>
-<div style="margin-bottom: 10px"><center>
-<%
-    if (data.isScopeActive()) {
-%>
-<a class="showall" onclick="showAll();"><%=ServletResources.getString("showAllLink", request)%></a>
-<% 
-    } else {
-%>
-<a class="showall" onclick="backToContent();"><%=ServletResources.getString("BackToContent", request)%></a>
-<%
-    }
-%>
-</center></div>
-
+<table>
+	<tr>
+		<td width="70%"><span><b><%=newResult%></b></span></td>
+		<td width="15%">
+			<table>
+				<tr>
+					<td class="showall"><a onclick="backToContent();" title="Back to Content"></a></td>
+					<td class="showintoc"><a onclick="synchWithToc();" title="Show in Table of Contents"></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<table>
 <table class="results" cellspacing='0'>
 
 <%

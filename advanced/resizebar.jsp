@@ -71,12 +71,20 @@ function toggleFrame(){
 		document.getElementById("resizeLineBar").className = "resize  clearfix";
 	}
 	//document.selection.clear;	
-}		
+}
+	
+function changeClass(obj, out){
+	if (out) {
+		obj.className = "uiIconMiniArrowLeft pull-left";
+	} else{ 
+		obj.className = "uiIconMiniArrowLeft uiIconBlue pull-left";
+	}
+}
 </script>
 	</head>
 	<body>
 		<div class="resize  clearfix" id="resizeLineBar">
-			<a id="maximize_restore" class="iconControll" href="javascript:restore_maximize(this);"><i class="uiIconMiniArrowLeft pull-left" ></i></a>
+			<a id="maximize_restore" class="iconControll" href="javascript:restore_maximize(this);"><i class="uiIconMiniArrowLeft pull-left" onmouseover="changeClass(this, false);" onmouseout="changeClass(this, true);"></i></a>
 			<div id="verticalBar" class="line pull-left" style="height: 100%; display: block;"></div>
 		</div>
 	</body>
