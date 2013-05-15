@@ -79,18 +79,8 @@ a:hover {
 	background: url('images/back_icon.png') no-repeat scroll right top transparent;
 }
 
-.showintoc a{
-	height: 16px;
-	display: block;
-	background: url('images/show_icon.png') no-repeat scroll right top transparent;
-}
-
 .showall a:hover{
 	background: url('images/back_hover_icon.png') no-repeat scroll right top transparent;
-}
-
-.showintoc a:hover{
-	background: url('images/show_hover_icon.png') no-repeat scroll right top transparent;
 }
 
 #menu {

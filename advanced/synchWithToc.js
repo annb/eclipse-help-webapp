@@ -9,6 +9,22 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
  
- if (parent.ContentToolbarFrame && parent.ContentToolbarFrame.autosynch) {
+ /*if (parent.ContentToolbarFrame && parent.ContentToolbarFrame.autosynch) {
      parent.ContentToolbarFrame.autosynch();
- }
+ }*/
+
+function synchWithToc(){
+	try {
+		parent.parent.HelpFrame.NavFrame.displayTocFor(getCurrentTopic(), false);
+	} catch(e) {}
+}
+
+function getCurrentTopic() {
+    var topic = parent.parent.HelpFrame.ContentFrame.ContentViewFrame.window.location.href;
+	// remove the query, if any
+	var i = topic.indexOf('?');
+	if (i != -1) {
+		topic = topic.substring(0, i);
+	}
+	return topic;
+}

@@ -11,10 +11,87 @@
 
 .help_breadcrumbs {
 	font: message-box;
-	margin-bottom: 10px;
 	display: none;
 }
 
 body {
 	margin-top: 4px;
+}
+
+.popupContainer {
+	display: none;
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	width: 700px;
+	height: 120px;
+	top: 107px;
+	left: 90px;
+	visibility: visible;
+	z-index: 5;
+}
+
+.popupHeader {
+    background-color: #F0F0F0;
+    border-bottom: 1px solid #F3F3F3;
+    box-shadow: 0 -1px 0 #CFCFCF inset;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 9px 0 15px;
+    cursor: pointer;
+}
+
+.popupHeader .uiIcon {
+	cursor: pointer;
+	margin: 9px 4px 0 0;
+}
+
+.popupHeader .popupTitle {
+    color: #333333;
+    display: block;
+    line-height: 35px;
+    margin: 0;
+}
+
+.popupContent {
+    background: none repeat scroll 0 0 white;
+    border-radius: 0 0 4px 4px;
+    overflow: auto;
+    padding: 10px;
+    width: auto;
+    height: 64px;
+}
+
+.linkShare {
+	margin-bottom: 10px;
+}
+
+.popupContent .inputPermlink {
+	width: 100%;
+}
+
+.toolbar {
+	float: right;
+	margin-right: 25px;
+}
+
+.permlink {
+	height: 15px;
+	width: 15px;
+	padding: 0px 5px 10px 20px;
+	background: url('images/permlink.png') no-repeat scroll right top transparent;
+}
+
+.permlink:hover{
+	background: url('images/permlink_hover.png') no-repeat scroll right top transparent;
+}
+
+.showintoc {
+	height: 15px;
+	width: 15px;
+	padding: 0px 5px 10px 20px;
+	background: url('images/show_icon.png') no-repeat scroll right top transparent;
+}
+
+.showintoc a:hover{
+	background: url('images/show_hover_icon.png') no-repeat scroll right top transparent;
 }

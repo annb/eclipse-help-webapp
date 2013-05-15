@@ -28,36 +28,44 @@
 <script language="JavaScript">
 
 function loadFrameHandle(){
+	var jquery = document.createElement('script');
+	jquery.type = 'text/javascript';
+	jquery.src = '../../advanced/jquery.js';
+	ContentViewFrame.document.getElementsByTagName('head')[0].appendChild(jquery);
+	var jqueryUI = document.createElement('script');
+	jqueryUI.type = 'text/javascript';
+	jqueryUI.src = '../../advanced/jquery-ui.js';
+	ContentViewFrame.document.getElementsByTagName('head')[0].appendChild(jqueryUI);
 	var breadcrumbs = ContentViewFrame.document.getElementsByClassName("help_breadcrumbs");
 	var currentBC = parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("newBreadcrumbs");
-	while(currentBC.hasChildNodes()){
-		currentBC.removeChild(currentBC.lastChild);
-	}	
+	currentBC.innerHTML = "";	
 	if ((breadcrumbs != null) && (breadcrumbs.length != 0)) {
 		var divBreadcrumbs = breadcrumbs[0].getElementsByTagName("a");
 		if (divBreadcrumbs != null) {
+			var html = '';
 			for (var i=1; i< divBreadcrumbs.length; i++){
 				var currentChild = divBreadcrumbs[i];
-				var childItem = document.createElement("div");
-				if (i == divBreadcrumbs.length-1) childItem.className = "active";
-				else childItem.className = "";
-				currentBC.appendChild(childItem);
-				var anchor = document.createElement("a");
-				anchor.href = currentChild.href;
-				anchor.target = "ContentViewFrame";
-				anchor.appendChild(document.createTextNode($(currentChild).text()));
-				childItem.appendChild(anchor);
+				html += '<div';
+				if (i == divBreadcrumbs.length-1) html += ' class="active">';
+				else html += ' class="">';
+				html += '<a href="' + currentChild.href + '" target="ContentViewFrame">' + $(currentChild).text() + '</a></div>';
 				if (i < (divBreadcrumbs.length-1)) {
-					var arrowIcon = document.createElement("span");
-					arrowIcon.className = "uiIconMiniArrowRight";
-					currentBC.appendChild(arrowIcon);
+					html += '<span class="uiIconMiniArrowRight"></span>';
 				}				
 			}
+			currentBC.innerHTML = html;
 		}
-		while(breadcrumbs[0].hasChildNodes()){
-			breadcrumbs[0].removeChild(breadcrumbs[0].lastChild);
-		}
-	}
+		
+		breadcrumbs[0].innerHTML = "";
+		breadcrumbs[0].style.display = "block";
+		var location = ContentViewFrame.window.location.href;
+		var shortLocation = "";
+		if (location.indexOf("/public/topic/") != -1) shortLocation = location.replace("/public/topic/", "/");
+		else shortLocation = location;
+		var bcHtml = '<div id="permlink" class="popupContainer"><div class="popupHeader"><a onclick="document.getElementById(\'permlink\').style.display=\'none\';" class="uiIcon uiIconClose pull-right" title="Close"></a><span class="popupTitle">Permalink</span></div><div class="popupContent"><div class="linkShare"><i class="uiIconPermalink"></i>&nbsp;Link to share</div><div><input type="text" value="' + shortLocation +'" id="pageLink" class="inputPermlink input-xxxlarge"></div></div></div>';
+		bcHtml += '<div class="toolbar"><a class="permlink" onclick="var permalink=document.getElementById(\'permlink\');permalink.style.display=\'block\';permalink.style.top=\'107px\';permalink.style.left=\'90px\';document.getElementById(\'pageLink\').focus(); $(\'#permlink\').draggable({containment: \'document\'});"></a><a class="showintoc" onclick="var topic=window.location.href;var i=topic.indexOf(' + "'?'" + ');if (i != -1) {topic=topic.substring(0, i);}parent.parent.NavFrame.displayTocFor(topic, false);" title="Show in Table of Contents"></a></div>';
+		breadcrumbs[0].innerHTML = bcHtml;
+	} 
 }
 </script>
 </head>

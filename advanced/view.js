@@ -30,21 +30,3 @@ function backToContent(){
     var searchInput = parent.parent.parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("searchWord");
     searchInput.value="";
 }
-
-function synchWithToc(){
-	try {
-		parent.parent.parent.parent.parent.HelpFrame.NavFrame.displayTocFor(getCurrentTopic(), false);
-	} catch(e) {}
-    	//var searchInput = parent.parent.parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("searchWord");
-    	//searchInput.value="";
-}
-
-function getCurrentTopic() {
-    var topic = parent.parent.parent.parent.parent.HelpFrame.ContentFrame.ContentViewFrame.window.location.href;
-	// remove the query, if any
-	var i = topic.indexOf('?');
-	if (i != -1) {
-		topic = topic.substring(0, i);
-	}
-	return topic;
-}

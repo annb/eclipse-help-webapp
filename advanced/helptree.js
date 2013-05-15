@@ -50,7 +50,7 @@ function treeMouseClickHandler(e) {
 	            highlightItem(getTreeItem(clickedNode), true); 
 	        }
 	    } 
-	} 	
+	}
 }
 
 

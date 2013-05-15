@@ -141,15 +141,8 @@ setTimeout('refresh()', 2000);
 %>
 <table>
 	<tr>
-		<td width="70%"><span><b><%=newResult%></b></span></td>
-		<td width="15%">
-			<table>
-				<tr>
-					<td class="showall"><a onclick="backToContent();" title="Back to Content"></a></td>
-					<td class="showintoc"><a onclick="synchWithToc();" title="Show in Table of Contents"></a></td>
-				</tr>
-			</table>
-		</td>
+		<td width="85%"><span><b><%=newResult%></b></span></td>
+		<td class="showall" width="10%"><a onclick="backToContent();" title="Back to Content"></a></td>
 	</tr>
 <table>
 <table class="results" cellspacing='0'>

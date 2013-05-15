@@ -136,27 +136,28 @@ function selectDoc(e, selected)
   document.getElementById("listOfDocs").style.display = "none";
   document.getElementById("tree_root").innerHTML = "";
   if (selectedDoc.indexOf("4.0") != -1) {
+  	document.cookie = "scope=PLF40";
 	loadSelectedDoc("/PLF40/toc.xml");
-	document.cookie = "scope=PLF40";
   } else {
+  	document.cookie = "scope=PLF35";
 	loadSelectedDoc("/PLF35/toc.xml");
-	document.cookie = "scope=PLF35";
   }
 }
 	
 function onloadHandler()
 {
 	setRootAccessibility();
-	document.cookie = "scope=PLF40";
 	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
 	if (locationHref.indexOf("PLF35") != -1) {
 		loadSelectedDoc("/PLF35/toc.xml");
 		document.getElementById("currentItem").innerHTML = "eXo Platform 3.5";
+		document.cookie = "scope=PLF35";
 	} else {
 		loadSelectedDoc("/PLF40/toc.xml");
 		document.getElementById("currentItem").innerHTML = "eXo Platform 4.0";
+		document.cookie = "scope=PLF40";
 	}
     var slashAdvanced = locationHref.lastIndexOf('/tocView.jsp');
     if(slashAdvanced > 0) {

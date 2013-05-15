@@ -40,6 +40,8 @@
 		}
 	});
 });*/
+
+var leftOrRight = false;
 		
 function restore_maximize(button)
 {
@@ -65,19 +67,23 @@ function toggleFrame(){
 		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowRight pull-left";
 		document.getElementById("verticalBar").style.display = "none";
 		document.getElementById("resizeLineBar").className = "resize  clearfix resizeLt";
+		leftOrRight = true;
 	} else {
 		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowLeft pull-left";
 		document.getElementById("verticalBar").style.display = "block";
 		document.getElementById("resizeLineBar").className = "resize  clearfix";
+		leftOrRight = false;
 	}
 	//document.selection.clear;	
 }
 	
 function changeClass(obj, out){
+	if (leftOrRight) var currentClass = "uiIconMiniArrowRight pull-left";
+	else var currentClass = "uiIconMiniArrowLeft pull-left";
 	if (out) {
-		obj.className = "uiIconMiniArrowLeft pull-left";
+		obj.className = currentClass;
 	} else{ 
-		obj.className = "uiIconMiniArrowLeft uiIconBlue pull-left";
+		obj.className = currentClass + " uiIconBlue";
 	}
 }
 </script>
