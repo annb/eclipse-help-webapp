@@ -12,20 +12,18 @@
 .help_breadcrumbs {
 	font: message-box;
 	display: none;
-}
-
-body {
-	margin-top: 4px;
+	padding-top: 0px;
 }
 
 .popupContainer {
 	display: none;
-	position: absolute;
+	position: fixed;
 	border: 1px solid #CCCCCC;
+	border-radius: 4px 4px 4px 4px;
 	width: 700px;
 	height: 120px;
-	top: 107px;
-	left: 90px;
+	top: 180px;
+	left: 115px;
 	visibility: visible;
 	z-index: 5;
 }
@@ -37,7 +35,7 @@ body {
     font-size: 14px;
     font-weight: bold;
     padding: 0 9px 0 15px;
-    cursor: pointer;
+    cursor: move;
 }
 
 .popupHeader .uiIcon {
@@ -71,7 +69,7 @@ body {
 
 .toolbar {
 	float: right;
-	margin-right: 25px;
+	margin-right: 33px;
 }
 
 .permlink {
@@ -83,6 +81,7 @@ body {
 
 .permlink:hover{
 	background: url('images/permlink_hover.png') no-repeat scroll right top transparent;
+	cursor: pointer;
 }
 
 .showintoc {
@@ -92,6 +91,7 @@ body {
 	background: url('images/show_icon.png') no-repeat scroll right top transparent;
 }
 
-.showintoc a:hover{
+.showintoc:hover{
 	background: url('images/show_hover_icon.png') no-repeat scroll right top transparent;
+	cursor: pointer;
 }

@@ -20,7 +20,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><%=ServletResources.getString("Help", request)%></title>
-
 <script language="JavaScript">
 <%-- map of maximize listener functions indexed by name --%>
 var maximizeListeners=new Object();

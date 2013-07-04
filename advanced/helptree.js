@@ -49,7 +49,7 @@ function treeMouseClickHandler(e) {
 	        } else {
 	            highlightItem(getTreeItem(clickedNode), true); 
 	        }
-	    } 
+	    }
 	}
 }
 

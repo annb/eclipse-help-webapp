@@ -81,6 +81,7 @@ a:hover {
 
 .showall a:hover{
 	background: url('images/back_hover_icon.png') no-repeat scroll right top transparent;
+	cursor: pointer;
 }
 
 #menu {
