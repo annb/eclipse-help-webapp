@@ -131,13 +131,32 @@ setTimeout('refresh()', 2000);
 <%
     }
 } else {
-	String matchResult = UrlUtil.htmlEncode(data.getMatchesInScopeMessage());
-	int f = matchResult.indexOf("All topics");
-	String newResult = matchResult.substring(0, f);
+	//String matchResult = UrlUtil.htmlEncode(data.getMatchesInScopeMessage());	
+	int resultFound = 0;
+	for (int topic = 0; topic < data.getResultsCount(); topic++)
+	{
+	    if (data.getTopicHref(topic).contains(scope)) {
+		resultFound ++;
+		}
+	}
+	if (resultFound ==0){
+		%>
+<table>
+	<tr>
+		<td width="85%"><span><b><%=data.getNotFoundMessage()%></b></span></td>
+		<td class="showall" width="10%"><a onclick="backToContent();" title="Back to Content"></a></td>
+	</tr>
+<table>
+		<%
+	}
+	else{
+	//int f = matchResult.indexOf("All topics");
+	//String newResult = matchResult.substring(0, f);
+	String newResult = resultFound +"";
 	String scopeLabel = "";
 	if (scope.contains("PLF40")) scopeLabel = "eXo Platform 4.0";
 	else scopeLabel = "eXo Platform 3.5";
-	newResult += scopeLabel;
+	newResult += " matches in "+scopeLabel;			
 %>
 <table>
 	<tr>
@@ -145,6 +164,7 @@ setTimeout('refresh()', 2000);
 		<td class="showall" width="10%"><a onclick="backToContent();" title="Back to Content"></a></td>
 	</tr>
 <table>
+	<%}%>
 <table class="results" cellspacing='0'>
 
 <%
