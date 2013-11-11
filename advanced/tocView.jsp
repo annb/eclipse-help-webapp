@@ -135,10 +135,16 @@ function selectDoc(e, selected)
   document.getElementById("currentItem").innerHTML = selectedDoc;
   document.getElementById("listOfDocs").style.display = "none";
   document.getElementById("tree_root").innerHTML = "";
-  if (selectedDoc.indexOf("4.0") != -1) {
+	
+  if (selectedDoc.indexOf("4.1") != -1) {  
+  	document.cookie = "scope=PLF41";
+	loadSelectedDoc("/PLF41/toc.xml");
+  } 	
+  else if (selectedDoc.indexOf("4.0") != -1) {
   	document.cookie = "scope=PLF40";
 	loadSelectedDoc("/PLF40/toc.xml");
-  } else {
+  } 
+  else if (selectedDoc.indexOf("3.5") != -1) {
   	document.cookie = "scope=PLF35";
 	loadSelectedDoc("/PLF35/toc.xml");
   }
@@ -150,15 +156,21 @@ function onloadHandler()
 	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
-	if (locationHref.indexOf("PLF35") != -1) {
-		loadSelectedDoc("/PLF35/toc.xml");
-		document.getElementById("currentItem").innerHTML = "eXo Platform 3.5";
-		document.cookie = "scope=PLF35";
-	} else {
+	if (locationHref.indexOf("PLF41") != -1) {
+		loadSelectedDoc("/PLF41/toc.xml");
+		document.getElementById("currentItem").innerHTML = "eXo Platform 4.1";
+		document.cookie = "scope=PLF41";
+	} 	
+	else if (locationHref.indexOf("PLF40") != -1) {
 		loadSelectedDoc("/PLF40/toc.xml");
 		document.getElementById("currentItem").innerHTML = "eXo Platform 4.0";
 		document.cookie = "scope=PLF40";
 	}
+	else if (locationHref.indexOf("PLF35") != -1) {
+		loadSelectedDoc("/PLF35/toc.xml");
+		document.getElementById("currentItem").innerHTML = "eXo Platform 3.5";
+		document.cookie = "scope=PLF35";
+	} 
     var slashAdvanced = locationHref.lastIndexOf('/tocView.jsp');
     if(slashAdvanced > 0) {
 	    setAjaxPrefix(locationHref.substr(0, slashAdvanced));
@@ -236,7 +248,10 @@ if (requestData.isIE()){
 								<i class="spiter"></i>
 								<i class="caret"></i>
 							</div>
-							<ul id="listOfDocs" role="menu" class="dropdown-menu">					
+							<ul id="listOfDocs" role="menu" class="dropdown-menu">	
+								<li>							
+									<a href="../topic/PLF41/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.1</a>
+								</li>    
 								<li>							
 									<a href="../topic/PLF40/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.0</a>
 								</li>

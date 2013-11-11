@@ -38,7 +38,7 @@ function updateTree(xml) {
 	 for (var i=0; i <nodes.length; i++) {
 		 if (nodes[i].tagName == "node") {
 			 var nodeName = nodes[i].getAttribute("title");
-			 if ((nodeName.indexOf("eXo Platform 3.5 Documentation") != -1) || (nodeName.indexOf("eXo Platform 4.0 Documentation") != -1)) {
+			 if ((nodeName.indexOf("eXo Platform 3.5 Documentation") != -1) || (nodeName.indexOf("eXo Platform 4.0 Documentation") != -1) || (nodeName.indexOf("eXo Platform 4.1 Documentation") != -1)) {
 				 var selectBox = document.getElementById("select_doc");
 				 var child = document.createElement("OPTION");
 				 child.appendChild(document.createTextNode(nodeName));
@@ -205,7 +205,7 @@ function addChild(treeItem, id, name, href, image, closedImage, imageAltText,
     childItem.nodeid = id;
     //alert(childItem.nodeid);
     treeItem.appendChild(childItem);
-    if ((name.indexOf("eXo Platform 3.5 Documentation") !=-1) || (name.indexOf("eXo Platform 4.0 Documentation") !=-1)) return childItem;
+    if ((name.indexOf("eXo Platform 3.5 Documentation") !=-1) || (name.indexOf("eXo Platform 4.0 Documentation") !=-1) || (name.indexOf("eXo Platform 4.1 Documentation") !=-1)) return childItem;
     
     // Create a span to prevent line breaking
     var container = document.createElement("SPAN");
