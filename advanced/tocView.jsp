@@ -153,7 +153,8 @@ function selectDoc(e, selected)
 function onloadHandler()
 {
 	setRootAccessibility();
-	document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
+	// fix IE8 javascript can not use innerHeight
+	//document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
 	if (locationHref.indexOf("PLF41") != -1) {

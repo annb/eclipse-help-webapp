@@ -641,13 +641,13 @@ h6 {
   background-image: url("../images/icons/uiIconsLightGray.png");
   background-repeat: no-repeat;
 }
+/* light grey icons with optional class, or on  */
+.uiIconDarkGray {
+  background-image: url("../images/icons/uiIconsDarkGray.png");
+}
 /* Blue icons with optional class, or on hover/active states of certain elements */
 .uiIconBlue {
   background-image: url("../images/icons/uiIconsBlue.png");
-}
-/* light grey icons with optional class, or on  */
-.uiIconDrakGray {
-  background-image: url("../images/icons/uiIconsDarkGray.png");
 }
 /* White icons with optional class, or on hover/active states of Drop down with Icons */
 .uiIconWhite {
@@ -2214,3 +2214,8 @@ a, a:hover {
   color: #2f5e92;
   text-decoration: none;
 }
+.OptionItem{
+  font-size: 13px;
+  color: #333333;
+}
+
