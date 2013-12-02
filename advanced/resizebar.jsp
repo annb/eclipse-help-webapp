@@ -90,12 +90,12 @@ function toggleFrame(){
 		p.toggleFrame('');
 	}
 	if(!p.isRestored) {
-		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowRight pull-left";
+		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowRight";
 		document.getElementById("verticalBar").style.display = "none";
 		document.getElementById("resizeLineBar").className = "resize  clearfix resizeLt";
 		leftOrRight = true;
 	} else {
-		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowLeft pull-left";
+		document.getElementById("maximize_restore").firstChild.className = "uiIconMiniArrowLeft";
 		document.getElementById("verticalBar").style.display = "block";
 		document.getElementById("resizeLineBar").className = "resize  clearfix";
 		leftOrRight = false;
@@ -104,8 +104,8 @@ function toggleFrame(){
 }
 	
 function changeClass(obj, out){
-	if (leftOrRight) var currentClass = "uiIconMiniArrowRight pull-left";
-	else var currentClass = "uiIconMiniArrowLeft pull-left";
+	if (leftOrRight) var currentClass = "uiIconMiniArrowRight uiIconDarkGray";
+	else var currentClass = "uiIconMiniArrowLeft uiIconDarkGray";
 	if (out) {
 		obj.className = currentClass;
 	} else{ 
@@ -117,8 +117,8 @@ function changeClass(obj, out){
 	<body>
 		<div id="position" style="display: none"></div>
 		<div class="resize  clearfix" id="resizeLineBar">
-			<a id="maximize_restore" class="iconControll" href="javascript:restore_maximize(this);"><i class="uiIconMiniArrowLeft pull-left" onmouseover="changeClass(this, false);" onmouseout="changeClass(this, true);"></i></a>
-			<div id="verticalBar" class="line pull-left" style="height: 100%; display: block;"></div>
+			<a id="maximize_restore" class="iconControll" href="javascript:restore_maximize(this);"><i class="uiIconMiniArrowLeft uiIconDarkGray" style="padding: 0px 4px 0 10px; width: 7px;" onmouseover="changeClass(this, false);" onmouseout="changeClass(this, true);">&nbsp;</i></a>
+			<div id="verticalBar" class="line pull-right" style="height: 1000px; display: block;"></div>
 		</div>
 	</body>
 </html>
