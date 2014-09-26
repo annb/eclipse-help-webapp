@@ -36,6 +36,18 @@ $(function(){
 	});
 });
 
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
 function printContent(button, param){
 	try {
 		parent.parent.parent.HelpFrame.ContentFrame.ContentViewFrame.focus();
@@ -50,6 +62,8 @@ var advancedDialog;
 
 function openAdvanced() 
 { 
+
+
     var workingSet = "All topics";
     var minSize = 300; 
     var maxHeight= 500;  
@@ -115,17 +129,29 @@ function closeAdvanced()
  */
 function doSearch(query, noRefocus)
 {
+
+
 	var workingSet = "All topics";
 
 	var form = document.forms["searchForm"];
 	var searchWord = form.searchWord.value;
-	var maxHits = form.maxHits.value;
+  var maxHits = form.maxHits.value;
+
+
 	if (!searchWord || searchWord == "")
 		return;
 	query ="searchWord="+encodeURIComponent(searchWord)+"&maxHits="+maxHits;
 	if (workingSet != '<%=UrlUtil.JavaScriptEncode(ServletResources.getString("All", request))%>')
 		query = query +"&scope="+encodeURIComponent(workingSet);
 		
+  var isComeFromHomePage = getCookie("isComeFromHomePage") ;
+  if (isComeFromHomePage == "ok"){
+    form.submit();
+		var searchView = parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame;
+		searchView.location.replace("searchView.jsp?"+query);
+    document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
+    }
+
 	/******** HARD CODED VIEW NAME *********/
 	// do some tests to ensure the results are available
 	if (parent.parent.HelpFrame && 
@@ -135,6 +161,7 @@ function doSearch(query, noRefocus)
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search && 
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame) 
 	{
+
 	    if (!noRefocus) {
 		    parent.parent.HelpFrame.NavFrame.showView("search");
 		}
@@ -182,18 +209,27 @@ function openDropBox() {
   docsList.style.display = "block";
 }
 
+
+
+
 function onloadHandler(e)
 {
-	var form = document.forms["searchForm"];
-	form.searchWord.value = '<%=UrlUtil.JavaScriptEncode(data.getSearchWord())%>';
-	fixHeights();
-<%
-    if (data.isScopeRequest() && RequestScope.filterBySearchScope(request)) {
-%>
-    rescope();
-<%
-    }
-%>
+	      var form = document.forms["searchForm"];
+        var isComeFromHomePage = getCookie("isComeFromHomePage") ;
+        if (isComeFromHomePage == "ok"){
+	        form.searchWord.value = getCookie("searchValue");    
+          doSearch();
+        }
+        else{
+	        form.searchWord.value = '<%=UrlUtil.JavaScriptEncode(data.getSearchWord())%>';
+	        fixHeights();
+        <%
+            if (data.isScopeRequest() && RequestScope.filterBySearchScope(request)) {
+        %>
+            rescope();
+        <%}
+        %>
+        }
 }
 
 </script>
