@@ -62,8 +62,6 @@ var advancedDialog;
 
 function openAdvanced() 
 { 
-
-
     var workingSet = "All topics";
     var minSize = 300; 
     var maxHeight= 500;  
@@ -129,20 +127,18 @@ function closeAdvanced()
  */
 function doSearch(query, noRefocus)
 {
-
-
 	var workingSet = "All topics";
+
 
 	var form = document.forms["searchForm"];
 	var searchWord = form.searchWord.value;
- var maxHits = form.maxHits.value;
-
-
+	var maxHits = form.maxHits.value;
 	if (!searchWord || searchWord == "")
 		return;
 	query ="searchWord="+encodeURIComponent(searchWord)+"&maxHits="+maxHits;
 	if (workingSet != '<%=UrlUtil.JavaScriptEncode(ServletResources.getString("All", request))%>')
 		query = query +"&scope="+encodeURIComponent(workingSet);
+
 		
   var isComeFromHomePage = getCookie("isComeFromHomePage") ;
   if (isComeFromHomePage == "ok"){
@@ -162,7 +158,6 @@ function doSearch(query, noRefocus)
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search && 
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame) 
 	{
-
 	    if (!noRefocus) {
 		    parent.parent.HelpFrame.NavFrame.showView("search");
 		}
@@ -170,10 +165,13 @@ function doSearch(query, noRefocus)
 		searchView.location.replace("searchView.jsp?"+query);
 	}
 
+
   if (isComeFromHomePage == "ok"){
     document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
  //   document.cookie = "scope=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/public/advanced";
+
     }
+
 }
 
 function getSearchWord() {
@@ -214,9 +212,6 @@ function openDropBox() {
   var docsList = document.getElementById("settingButton");
   docsList.style.display = "block";
 }
-
-
-
 
 function onloadHandler(e)
 {
