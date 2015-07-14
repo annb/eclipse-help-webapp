@@ -62,8 +62,6 @@ var advancedDialog;
 
 function openAdvanced() 
 { 
-
-
     var workingSet = "All topics";
     var minSize = 300; 
     var maxHeight= 500;  
@@ -129,13 +127,12 @@ function closeAdvanced()
  */
 function doSearch(query, noRefocus)
 {
-
-
 	var workingSet = "All topics";
+
 
 	var form = document.forms["searchForm"];
 	var searchWord = form.searchWord.value;
- var maxHits = form.maxHits.value;
+  var maxHits = form.maxHits.value;
 
 
 	if (!searchWord || searchWord == "")
@@ -143,6 +140,7 @@ function doSearch(query, noRefocus)
 	query ="searchWord="+encodeURIComponent(searchWord)+"&maxHits="+maxHits;
 	if (workingSet != '<%=UrlUtil.JavaScriptEncode(ServletResources.getString("All", request))%>')
 		query = query +"&scope="+encodeURIComponent(workingSet);
+
 		
   var isComeFromHomePage = getCookie("isComeFromHomePage") ;
   if (isComeFromHomePage == "ok"){
@@ -162,18 +160,12 @@ function doSearch(query, noRefocus)
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search && 
 		parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame) 
 	{
-
 	    if (!noRefocus) {
 		    parent.parent.HelpFrame.NavFrame.showView("search");
 		}
 		var searchView = parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame;
 		searchView.location.replace("searchView.jsp?"+query);
 	}
-
-  if (isComeFromHomePage == "ok"){
-    document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
- //   document.cookie = "scope=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/public/advanced";
-    }
 }
 
 function getSearchWord() {
@@ -215,9 +207,6 @@ function openDropBox() {
   docsList.style.display = "block";
 }
 
-
-
-
 function onloadHandler(e)
 {
 	      var form = document.forms["searchForm"];
@@ -257,7 +246,7 @@ function onloadHandler(e)
 				<li><a id="printButton" href="javascript:printContent('printButton','');" tabindex="-1">Print Page</a></li>
 			</ul>
 		</div-->
-		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.org/portal/private/classic/documentation"><i class="uiIconDownload uiIconWhite"></i> PDF</a>		
+		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.com/portal/intranet/downloads"><i class="uiIconDownload uiIconWhite"></i> PDF</a>		
 	</div>
 	
 	<div class="uiSearchForm uiSearchInput pull-left">
