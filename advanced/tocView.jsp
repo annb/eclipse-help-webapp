@@ -136,7 +136,11 @@ function selectDoc(e, selected)
   document.getElementById("listOfDocs").style.display = "none";
   document.getElementById("tree_root").innerHTML = "";
 
-  if (selectedDoc.indexOf("4.2") != -1) {  
+  if (selectedDoc.indexOf("4.3") != -1) {  
+  	document.cookie = "scope=PLF43";
+	loadSelectedDoc("/PLF43/toc.xml");
+  } 
+  else if (selectedDoc.indexOf("4.2") != -1) {  
   	document.cookie = "scope=PLF42";
 	loadSelectedDoc("/PLF42/toc.xml");
   } 		
@@ -161,7 +165,12 @@ function onloadHandler()
 	//document.getElementById("wai_application").style.minHeight = (window.innerHeight - 43) + "px";
 	// Set prefix for AJAX calls by removing tocView.jsp from location
 	var locationHref = window.location.href;
-	if (locationHref.indexOf("PLF42") != -1) {
+	if (locationHref.indexOf("PLF43") != -1) {
+		loadSelectedDoc("/PLF43/toc.xml");
+		document.getElementById("currentItem").innerHTML = "eXo Platform 4.3";
+		document.cookie = "scope=PLF43";
+	} 
+	else if (locationHref.indexOf("PLF42") != -1) {
 		loadSelectedDoc("/PLF42/toc.xml");
 		document.getElementById("currentItem").innerHTML = "eXo Platform 4.2";
 		document.cookie = "scope=PLF42";
@@ -259,6 +268,9 @@ if (requestData.isIE()){
 								<i class="caret"></i>
 							</div>
 							<ul id="listOfDocs" role="menu" class="dropdown-menu">	
+								<li>							
+									<a href="../topic/PLF43/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.3</a>
+								</li> 
 								<li>							
 									<a href="../topic/PLF42/home.html" target="_top" class="OptionItem" onclick="selectDoc(event,this);">eXo Platform 4.2</a>
 								</li> 

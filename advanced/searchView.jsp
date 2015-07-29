@@ -154,7 +154,9 @@ setTimeout('refresh()', 2000);
 	//String newResult = matchResult.substring(0, f);
 	String newResult = resultFound +"";
 	String scopeLabel = "";
-	if (scope.contains("PLF42")) 
+	if (scope.contains("PLF43")) 
+		{scopeLabel = "eXo Platform 4.3";}	
+	else if (scope.contains("PLF42")) 
 		{scopeLabel = "eXo Platform 4.2";}	
 	else if (scope.contains("PLF41")) 
 		{scopeLabel = "eXo Platform 4.1";}	
