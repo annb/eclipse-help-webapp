@@ -19,11 +19,28 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title><%=ServletResources.getString("Help", request)%></title>
+<script src="/public/advanced/jquery.js"></script>
 <script language="JavaScript">
 <%-- map of maximize listener functions indexed by name --%>
 var maximizeListeners=new Object();
 var isRestored = false;
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+
+
+
 function registerMaximizeListener(name, listener){
 	maximizeListeners[name]=listener;
 }
@@ -35,9 +52,23 @@ function notifyMaximizeListeners(maximizedNotRestored){
 	}
 }
 <%-- vars to keep track of frame sizes before max/restore --%>
+
 var leftCols = "<%=isRTL?"73%":"25%"%>";
 var centerCols = "2%";
 var rightCols = "<%=isRTL?"25%":"73%"%>";
+var isTablet = false;
+
+if($(window).width() < 1023){
+isTablet = true;
+}
+
+if(isTablet){
+ leftCols = "<%=isRTL?"0%":"94%"%>";
+ centerCols = "6%";
+ rightCols = "<%=isRTL?"94%":"0%"%>";
+}
+
+
 <%--
 param title "" for content frame
 --%>
@@ -59,11 +90,22 @@ function toggleFrame(title)
 <%
 if(isRTL) {
 %>
-			frameset.setAttribute("cols", "98%,2%,*");
+			if(isTablet){
+				frameset.setAttribute("cols", "94%,6%,*");
+			}
+			else{
+				frameset.setAttribute("cols", "98%,2%,*");
+			}
+
 <%
 } else {
 %>
-			frameset.setAttribute("cols", "*,2%,98%");
+			if(isTablet){			
+					frameset.setAttribute("cols", "*,6%,94%");				
+			}
+			else{
+				frameset.setAttribute("cols", "*,2%,98%");
+			}
 <%
 }
 %>	
@@ -73,6 +115,33 @@ if(isRTL) {
 		notifyMaximizeListeners(true);
 	}
 }
+
+
+
+function toggleFrameLink(title)
+{
+	var frameset = document.getElementById("helpFrameset");
+	var navFrameSize = frameset.getAttribute("cols");
+	var left = navFrameSize.split(",")[0];
+	var right = navFrameSize.split(",")[2];
+
+			if(isTablet){
+				frameset.setAttribute("cols", "*,6%,94%");
+			}
+			
+}
+
+
+$(document).ready(function(){
+//first display in page
+	if(isTablet){
+		var frameset = document.getElementById("helpFrameset");
+		frameset.setAttribute("cols", "*,6%,94%");				
+		isRestored = true;
+		notifyMaximizeListeners(false);
+	}
+});
+
 </script>
 </head>
 
@@ -87,7 +156,12 @@ if (data.isIE()) {
 <%
 }
 %> 
+
     id="helpFrameset" cols="<%=isRTL?"73%,2%,25%":"25%,2%,73%"%>" framespacing="0" border="0"  frameborder="0"   scrolling="no" bordercolor="#FFFFFF">
+
+
+
+
 <%
 if (isRTL) {
 %>

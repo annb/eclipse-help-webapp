@@ -1956,13 +1956,14 @@ textarea[readonly] {
 }
 .uiSearchInput {
   position: relative;
+  overflow: hidden;
 }
 .uiSearchInput form {
   margin: 0;
 }
 .uiSearchInput input[type="text"] {
   margin: 0;
-  width: 272px;
+  width: 100%;
 }
 .uiSearchInput .search-button {
   background: url("../images/Search.png") no-repeat scroll right -6px;
@@ -1981,14 +1982,19 @@ textarea[readonly] {
 }
 .root img {
   vertical-align: middle;
-  margin-right: 6px;
+  margin-right: 0px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+
 }
 .root a {
   color: #333333;
   font-size: 13px;
 }
 .root .group > div {
-  margin: 8px 0;
+  margin: 0px 0;
 }
 .root .group .group {
   margin: 0 0 0 20px;
@@ -2218,4 +2224,12 @@ a, a:hover {
   font-size: 13px;
   color: #333333;
 }
+.actionBar {
+  margin-left: 10px;
+}
 
+@media(min-width: 768px) {
+  .uiSearchInput {
+    max-width: 273px;
+  }
+}

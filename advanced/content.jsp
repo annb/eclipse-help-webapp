@@ -20,6 +20,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title><%=ServletResources.getString("Help", request)%></title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="css/global.css" />
@@ -59,6 +60,7 @@ function loadFrameHandle(){
 	jqueryUI.src = '../../advanced/jquery-ui.js';
 	ContentViewFrame.document.getElementsByTagName('head')[0].appendChild(jqueryUI);
 	var breadcrumbs = ContentViewFrame.document.getElementsByClassName("help_breadcrumbs");
+/*
 	var currentBC = parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("newBreadcrumbs");
 	currentBC.innerHTML = "";	
 	if ((breadcrumbs != null) && (breadcrumbs.length != 0)) {
@@ -84,6 +86,7 @@ function loadFrameHandle(){
 		var bcHtml = '<div id="permlink" class="popupContainer">' + iHtml + '</div>';
 		breadcrumbs[0].innerHTML = bcHtml;
 	}
+*/
 }
 </script>
 </head>

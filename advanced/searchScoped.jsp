@@ -20,7 +20,7 @@
 <html lang="<%=ServletResources.getString("locale", request)%>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title><%=ServletResources.getString("SearchLabel", request)%></title>
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -57,6 +57,12 @@ function printContent(button, param){
 
 var isIE = navigator.userAgent.indexOf('MSIE') != -1;
 var isMozilla = navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && parseInt(navigator.appVersion.substring(0,1)) >= 5;
+
+var isTablet = false;
+if($(window).width() < 1023){
+	isTablet = true;
+}
+
 
 var advancedDialog;
 
@@ -166,6 +172,16 @@ function doSearch(query, noRefocus)
 		var searchView = parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame;
 		searchView.location.replace("searchView.jsp?"+query);
 	}
+
+
+	if(isTablet){
+		document.cookie = "valueSearchMobile="+searchWord+"; path=/";	
+	}
+
+
+
+
+
 }
 
 function getSearchWord() {
@@ -249,7 +265,7 @@ function onloadHandler(e)
 		<a class="btn btn-primary" target="_blank" href="http://community.exoplatform.com/portal/intranet/downloads"><i class="uiIconDownload uiIconWhite"></i> PDF</a>		
 	</div>
 	
-	<div class="uiSearchForm uiSearchInput pull-left">
+	<div class="uiSearchForm uiSearchInput">
 		<input id="searchScope" type="hidden" name="Scope" value="" >
 		<form  name="searchForm"   onsubmit="doSearch();">
 			<div>
@@ -260,10 +276,7 @@ function onloadHandler(e)
 			</div>
 		</form>
 	</div>
-	
-	<div id="newBreadcrumbs" class="breadcrumb">       
-	
-	</div>	
+
 </div>
 </body>
 </html>

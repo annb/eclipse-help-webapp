@@ -23,6 +23,7 @@
 <html lang="<%=ServletResources.getString("locale", request)%>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 
@@ -43,6 +44,23 @@ var cookiesRequired = "<%=UrlUtil.JavaScriptEncode(ServletResources.getString("c
 var showCategories = <%=data.isShowCategories()%>;
 var scope ="<%=UrlUtil.JavaScriptEncode(data.getScope())%>";
 
+function toggleFrameLink(){
+	// get to the frameset
+	var p = parent;
+	while (p && !p.toggleFrame)  {	   
+	    if (p === p.parent)  {
+	        return;
+        }
+		p = p.parent;
+	}
+	
+	if (p!= null){
+		p.toggleFrameLink('');
+	}
+
+	//document.selection.clear;	
+}
+
 function refresh() { 
 	window.location.replace("searchView.jsp?<%=UrlUtil.JavaScriptEncode(request.getQueryString())%>");
 }
@@ -59,6 +77,8 @@ function setShowCategories(value) {
 	       + "&showSearchCategories=" + value +
 	       "&scope=" + encodeURIComponent(scope);    
 }
+
+
 
 function setShowDescriptions(value) {
 	setCookie("showDescriptions", value);
@@ -197,7 +217,8 @@ setTimeout('refresh()', 2000);
 					id="a<%=topic%>c"'
 					class="link"
 					onmouseover="showStatus(event);return true;"
-					onmouseout="clearStatus();return true;">
+					onmouseout="clearStatus();return true;"
+						>
 				<%=UrlUtil.htmlEncode(cat)%>
 			</a>
 		</td>
@@ -238,6 +259,7 @@ setTimeout('refresh()', 2000);
 		   href="<%=UrlUtil.htmlEncode(data.getTopicHref(topic))%>" 
 		   onmouseover="showStatus(event);return true;"
 		   onmouseout="clearStatus();return true;"
+		   onclick="toggleFrameLink(); return true;"
 		   title="<%=data.getTopicTocLabel(topic)%>">
 
 <%
