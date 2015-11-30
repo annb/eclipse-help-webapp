@@ -28,6 +28,18 @@
 	z-index: 5;
 }
 
+.popupContainerTablet {
+	display: none;
+	position: fixed;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px 4px 4px 4px;
+	width: 300;
+	left: 1px;
+	height: 120px;
+	visibility: visible;
+	z-index: 5;
+}
+
 .popupHeader {
     background-color: #F0F0F0;
     border-bottom: 1px solid #F3F3F3;

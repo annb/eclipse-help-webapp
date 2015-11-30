@@ -27,6 +27,10 @@
 <script language="javascript" src="jquery.js"></script>
 
 <script language="JavaScript">
+var isTablet = false;
+if($(window).width() < 1023){
+	isTablet = true;
+}
 
 function loadFrameHandle(){
 	var h = Math.round(ContentViewFrame.window.innerHeight/2) - 67;
@@ -38,6 +42,13 @@ function loadFrameHandle(){
 	var i = shortLocation.indexOf("?");
 	if ( i != -1) shortLocation = shortLocation.substring(0,i);
 	var iHtml = '<div class="popupHeader" onmousedown="$(\'#permlink\').draggable({containment: \'document\'});"><a onclick="event.stopPropagation();var permlink = document.getElementById(\'permlink\'); permlink.style.display=\'none\'; permlink.style.top=\'' + h + 'px\';permlink.style.left=\''+ w + 'px\';" class="uiIcon uiIconClose pull-right" title="Close"></a><span class="popupTitle">Permalink</span></div><div class="popupContent"><div class="linkShare"><i class="uiIconPermalink"></i>&nbsp;Link to share</div><div><input type="text" value="' + shortLocation +'" id="pageLink" class="inputPermlink input-xxxlarge" readonly="readonly" onclick="this.focus();this.select();"></div></div>';
+
+if(isTablet){
+	iHtml = '<div class="popupHeader" onmousedown="$(\'#permlink\').draggable({containment: \'document\'});"><a onclick="event.stopPropagation();var permlink = document.getElementById(\'permlink\'); permlink.style.display=\'none\'; permlink.style.top=\'' + 50 + 'px\';permlink.style.left=\''+ 1 + 'px\';" class="uiIcon uiIconClose pull-right" title="Close"></a><span class="popupTitle">Permalink</span></div><div class="popupContent"><div class="linkShare"><i class="uiIconPermalink"></i>&nbsp;Link to share</div><div><input type="text" value="' + shortLocation +'" id="pageLink" class="inputPermlink input-xxxlarge" readonly="readonly" onclick="this.focus();this.select();"></div></div>';
+}
+
+
+
 	if (location.indexOf("home.html") != -1) {
 		var styleBC = document.createElement("link");
 		styleBC.setAttribute("rel", "stylesheet");
@@ -60,7 +71,7 @@ function loadFrameHandle(){
 	jqueryUI.src = '../../advanced/jquery-ui.js';
 	ContentViewFrame.document.getElementsByTagName('head')[0].appendChild(jqueryUI);
 	var breadcrumbs = ContentViewFrame.document.getElementsByClassName("help_breadcrumbs");
-/*
+
 	var currentBC = parent.parent.parent.HelpToolbarFrame.SearchFrame.document.getElementById("newBreadcrumbs");
 	currentBC.innerHTML = "";	
 	if ((breadcrumbs != null) && (breadcrumbs.length != 0)) {
@@ -84,9 +95,12 @@ function loadFrameHandle(){
 		breadcrumbs[0].style.display = "block";
 		breadcrumbs[0].style.paddingTop = "0px";
 		var bcHtml = '<div id="permlink" class="popupContainer">' + iHtml + '</div>';
+		if(isTablet){
+		bcHtml = '<div id="permlink" class="popupContainerTablet">' + iHtml + '</div>';
+		}
 		breadcrumbs[0].innerHTML = bcHtml;
 	}
-*/
+
 }
 </script>
 </head>

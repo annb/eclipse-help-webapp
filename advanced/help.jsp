@@ -21,7 +21,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title><%=ServletResources.getString("Help", request)%></title>
-<script src="/public/advanced/jquery.js"></script>
+<script src="/docs/public/advanced/jquery.js"></script>
 <script language="JavaScript">
 <%-- map of maximize listener functions indexed by name --%>
 var maximizeListeners=new Object();

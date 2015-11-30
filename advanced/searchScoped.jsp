@@ -153,7 +153,7 @@ function doSearch(query, noRefocus)
     form.submit();
 		var searchView = parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame;
 		searchView.location.replace("searchView.jsp?"+query);
-    		document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
+    		document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/docs/";
  //   document.cookie = "scope=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/public/advanced";
     }
 
@@ -276,6 +276,7 @@ function onloadHandler(e)
 			</div>
 		</form>
 	</div>
+	<div id="newBreadcrumbs" class="breadcrumb"></div>
 
 </div>
 </body>

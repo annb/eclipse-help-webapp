@@ -1953,6 +1953,7 @@ textarea[readonly] {
 }
 .searchBar .breadcrumb {
   margin: 3px 0 0 325px;
+  display:none;
 }
 .uiSearchInput {
   position: relative;
