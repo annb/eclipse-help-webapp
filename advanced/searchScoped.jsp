@@ -153,7 +153,10 @@ function doSearch(query, noRefocus)
     form.submit();
 		var searchView = parent.parent.HelpFrame.NavFrame.ViewsFrame.search.searchViewFrame;
 		searchView.location.replace("searchView.jsp?"+query);
-    		document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/docs/";
+		//fix for Firefox
+		document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/docs/";
+		//fix for Chrome
+    		document.cookie = "isComeFromHomePage=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/docs";
  //   document.cookie = "scope=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/public/advanced";
     }
 

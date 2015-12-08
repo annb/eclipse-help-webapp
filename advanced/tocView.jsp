@@ -137,23 +137,33 @@ function selectDoc(e, selected)
   document.getElementById("tree_root").innerHTML = "";
 
   if (selectedDoc.indexOf("4.3") != -1) {  
-  	document.cookie = "scope=PLF43";
+  //	document.cookie = "scope=PLF43";
+	document.cookie = "scope=PLF43; path=/docs/public/advanced";
+	document.cookie = "scope=PLF43; path=/docs/public/advanced/";
 	loadSelectedDoc("/PLF43/toc.xml");
   } 
   else if (selectedDoc.indexOf("4.2") != -1) {  
-  	document.cookie = "scope=PLF42";
+  //	document.cookie = "scope=PLF42";
+	document.cookie = "scope=PLF42; path=/docs/public/advanced";
+	document.cookie = "scope=PLF42; path=/docs/public/advanced/";
 	loadSelectedDoc("/PLF42/toc.xml");
   } 		
   else if (selectedDoc.indexOf("4.1") != -1) {  
-  	document.cookie = "scope=PLF41";
+  //	document.cookie = "scope=PLF41";
+	document.cookie = "scope=PLF41; path=/docs/public/advanced";
+	document.cookie = "scope=PLF41; path=/docs/public/advanced/";
 	loadSelectedDoc("/PLF41/toc.xml");
   } 	
   else if (selectedDoc.indexOf("4.0") != -1) {
-  	document.cookie = "scope=PLF40";
+  //	document.cookie = "scope=PLF40";
+	document.cookie = "scope=PLF40; path=/docs/public/advanced";
+	document.cookie = "scope=PLF40; path=/docs/public/advanced/";
 	loadSelectedDoc("/PLF40/toc.xml");
   } 
   else if (selectedDoc.indexOf("3.5") != -1) {
-  	document.cookie = "scope=PLF35";
+  //	document.cookie = "scope=PLF35";
+	document.cookie = "scope=PLF35; path=/docs/public/advanced";
+	document.cookie = "scope=PLF35; path=/docs/public/advanced/";
 	loadSelectedDoc("/PLF35/toc.xml");
   }
 }
